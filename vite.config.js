@@ -10,5 +10,6 @@ export default defineConfig({
       restart : '/src/index.css'
     })
   ],
+   base: '/DnD-Inventory-React/'
 
 })
