@@ -1,0 +1,32 @@
+.inventory__header {
+    background-color: rgb(163, 163, 163);
+  }
+  .inventory__header .inventory__header-top {
+    display: flex;
+  }
+  .inventory__header .inventory__header-bottom {
+    display: flex;
+  }
+  .inventory__header .inventory__header-wealth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .inventory__header .inventory__header-wealth .inventory__header-wealth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inventory__header .inventory__header-wealth .inventory__header-wealth-container img {
+    height: 20px;
+    width: auto;
+  }
+  .inventory__header .inventory__header-wealth .inventory__header-wealth-container input {
+    width: 30px;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #333;
+    color: rgb(255, 255, 255);
+  }
