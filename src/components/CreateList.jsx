@@ -31,7 +31,7 @@ export default function CreateList({
     .filter(([category]) => category !== "wallet" && category !== "maxWeight")
     .map(([category, items]) => (
       <div key={category}>
-        <h2>{category}</h2>
+        <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
         {items.length > 0 ? (
           <table>
             <thead>

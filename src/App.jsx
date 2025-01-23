@@ -47,8 +47,8 @@ function InventoryApp() {
     wallet: { gold: 0, silver: 0, copper: 0 },
     maxWeight: "", // Default para evitar errores
   };
-
   const totalWeight = calculateTotalWeight(inventory);
+  const [dropdownCheck, setDropdownChecked] = useState(false)
 
   useEffect(() => {
     localStorage.setItem("allInventories", JSON.stringify(allInventories));
@@ -131,6 +131,8 @@ function InventoryApp() {
     input.click();
   }
 
+  
+
   return (
     <main className="frame">
       <header className="inventory__header">
@@ -145,8 +147,11 @@ function InventoryApp() {
               </option>
             ))}
           </select>
-          <button className="header__dropdown-btn" onClick={console.log("AAAasAs")}>AA</button>
-          <div className="header__dropdown-list">
+          <input type="checkbox"
+            className="header__dropdown-btn"
+            onChange={(e) => setDropdownChecked(e.target.checked)}
+          />
+          <div className={`header__dropdown-list ${dropdownCheck ? "" : "dropdown-transition"}`}>
             <button
               className="pure-button"
               onClick={() => {
@@ -237,10 +242,10 @@ function InventoryApp() {
               />
             </div>
             <button
-              className="pure-button"
+              className="pure-button addmoney" 
               onClick={() => setShowAddMoneyModal(true)} // Muestra el modal
             >
-              Agregar Dinero
+              💲
             </button>
           </div>
         </div>
@@ -266,7 +271,7 @@ function InventoryApp() {
               placeholder="Oro"
               value={modalValues.gold}
               onChange={(e) => {
-                const value = Math.max(0, parseInt(e.target.value, 10) || 0);
+                const value = parseInt(e.target.value, 10) || 0;;
                 setModalValues({ ...modalValues, gold: value });
               }}
             />

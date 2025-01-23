@@ -1,7 +1,17 @@
+.dropdown-transition {
+  transform: translateY(-300%);
+}
+
+.frame {
+  width: 100vw;
+  max-width: 600px;
+}
+
 .inventory__header {
   width: 100%;
   height: auto;
   background-color: red;
+  font-size: 1.1rem;
 }
 
 .inventory__header .inventory__header-top {
@@ -12,12 +22,27 @@
   height: 3rem;
 }
 .inventory__header .inventory__header-top > select {
+  all: unset;
   flex: 1;
+  font-size: 3rem;
+  padding-left: 0.5rem;
 }
 .inventory__header .inventory__header-top .header__dropdown-btn {
+  position: relative;
   width: 100px;
   background-color: black;
   color: #333;
+}
+.inventory__header .inventory__header-top .header__dropdown-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  background-image: url("./assets/book.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .inventory__header .inventory__header-top .header__dropdown-list {
   z-index: -1;
@@ -26,10 +51,17 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  transition: transform 1s 0s ease;
 }
 
 .inventory__header .inventory__header-bottom {
+  padding: 0.5rem;
   display: flex;
+  justify-content: space-between;
+}
+.inventory__header .inventory__header-bottom p input {
+  all: unset;
+  width: 3rem;
 }
 
 .inventory__header .inventory__header-wealth {
@@ -37,19 +69,25 @@
   align-items: center;
   justify-content: center;
 }
+.inventory__header .inventory__header-wealth .addmoney {
+  padding: 0 1rem;
+  height: 2rem;
+}
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.2rem;
 }
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container img {
-  height: 20px;
+  height: 30px;
   width: auto;
 }
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container input {
+  all: unset;
   width: 30px;
 }
 
@@ -57,11 +95,6 @@ body {
   margin: 0;
   background-color: #333;
   color: rgb(255, 255, 255);
-}
-
-.frame {
-  width: 100vw;
-  max-width: 600px;
 }
 
 body {

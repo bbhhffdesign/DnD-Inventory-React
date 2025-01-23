@@ -1,17 +1,26 @@
 export function handleAddMoney(allInventories, currentInventory, modalValues, setInventory, setShowAddMoneyModal) {
   const { gold, silver, copper } = modalValues;
-  let updatedGold =
-    allInventories[currentInventory].wallet.gold + parseInt(gold);
-  let updatedSilver =
-    allInventories[currentInventory].wallet.silver + parseInt(silver);
-  let updatedCopper =
-    allInventories[currentInventory].wallet.copper + parseInt(copper);
 
-  updatedSilver += Math.floor(updatedCopper / 100);
-  updatedCopper %= 100;
-  updatedGold += Math.floor(updatedSilver / 10);
-  updatedSilver %= 10;
+  let updatedGold = allInventories[currentInventory].wallet.gold + parseInt(gold, 10);
+  let updatedSilver = allInventories[currentInventory].wallet.silver + parseInt(silver, 10);
+  let updatedCopper = allInventories[currentInventory].wallet.copper + parseInt(copper, 10);
 
+  // Ajustar las monedas según los valores (pueden ser negativos)
+  if (updatedCopper < 0) {
+    updatedSilver += Math.floor(updatedCopper / 100); // Reducir silver si falta copper
+    updatedCopper = (updatedCopper % 100 + 100) % 100; // Asegurar que el copper esté en rango [0, 99]
+  }
+
+  if (updatedSilver < 0) {
+    updatedGold += Math.floor(updatedSilver / 10); // Reducir gold si falta silver
+    updatedSilver = (updatedSilver % 10 + 10) % 10; // Asegurar que el silver esté en rango [0, 9]
+  }
+
+  if (updatedGold < 0) {
+    updatedGold = Math.max(updatedGold, 0); // Evita que el oro sea negativo si no se permite
+  }
+
+  // Actualizar el estado del inventario
   setInventory({
     wallet: {
       gold: updatedGold,
