@@ -7,7 +7,7 @@ export default function SellItemForm({
 }) {
   return (
     <form
-      className="pure-form pure-form-stacked"
+      className="pure-form pure-form-stacked modal"
       onSubmit={(e) => {
         e.preventDefault();
         onSell();

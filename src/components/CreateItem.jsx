@@ -15,12 +15,12 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
       [category]: [...(inventory[category] || []), newItem],
     });
     e.target.reset();
-    onClose(); // Cierra el formulario después de agregar un ítem
+    onClose();
   }
 
   return (
     <form
-      className="pure-form pure-form-stacked"
+      className="pure-form pure-form-stacked modal"
       onSubmit={handleSubmit}
       style={{ border: "solid 1px white", padding: "1rem" }}
     >

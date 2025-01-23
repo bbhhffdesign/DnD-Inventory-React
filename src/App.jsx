@@ -9,6 +9,8 @@ import {
   calculateTotalWeight,
 } from "./logic/header";
 
+import Menu from "./components/Menu";
+
 function InventoryApp() {
   const [allInventories, setAllInventories] = useState(() => {
     const saved = localStorage.getItem("allInventories");
@@ -75,7 +77,6 @@ function InventoryApp() {
     const item = allInventories[currentInventory][category][index];
     const sellValue = value * sellQuantity;
 
-    // Update the wallet
     let { gold, silver, copper } = allInventories[currentInventory].wallet || {
       gold: 0,
       silver: 0,
@@ -87,7 +88,6 @@ function InventoryApp() {
     gold += Math.floor(silver / 10);
     silver %= 10;
 
-    // Update the inventory
     setInventory({
       [category]: allInventories[currentInventory][category].map((it, i) =>
         i === index ? { ...it, quantity: it.quantity - sellQuantity } : it
@@ -150,7 +150,7 @@ function InventoryApp() {
             className="header__dropdown-btn"
             onChange={(e) => setDropdownChecked(e.target.checked)}
           />
-          <div
+          {/* <div
             className={`header__dropdown-list ${
               dropdownCheck ? "" : "dropdown-transition"
             }`}
@@ -191,16 +191,16 @@ function InventoryApp() {
             <button className="pure-button" onClick={handleUpload}>
               Importar Inventarios
             </button>
-          </div>
+          </div> */}
         </div>
         <div className="inventory__header-bottom">
           <div className="header__bottom-weight">
-          <img src="./assets/weight.png" style={{width: "2rem", height : "2rem"}} alt="" />
             <p
               style={{
                 color: totalWeight > inventory.maxWeight ? "red" : "black",
               }}
             >
+              <img src="./src/assets/weight.png" style={{width: "1rem", height : "1rem"}} alt="" />
                {totalWeight} /{" "}
               <input
                 type="number"
@@ -249,13 +249,27 @@ function InventoryApp() {
             </div>
             <button
               className="pure-button addmoney"
-              onClick={() => setShowAddMoneyModal(true)} // Muestra el modal
+              onClick={() => setShowAddMoneyModal((prev) => !prev)} // Muestra el modal
             >
               💲
             </button>
           </div>
         </div>
       </header>
+      {dropdownCheck && (
+        <Menu
+          dropdownCheck={dropdownCheck}
+          setDropdownChecked={setDropdownChecked}
+          handleCreateInventory={handleCreateInventory}
+          handleDeleteInventory={handleDeleteInventory}
+          currentInventory={currentInventory}
+          allInventories={allInventories}
+          setAllInventories={setAllInventories}
+          setCurrentInventory={setCurrentInventory}
+          handleDownload={handleDownload}
+          handleUpload={handleUpload}
+        />
+      )}
       {showAddMoneyModal && (
         <div className="modal">
           <form

@@ -1,8 +1,14 @@
 @forward "transitions"; 
 @forward "frame"; 
 @forward "header"; 
+@forward "item"; 
+@forward "modal"; 
 
-
-body{
-    margin: 0;
+*{
+    box-sizing: border-box;
 }
+body {
+    margin: 0;
+    background-color: #333;
+    color: rgb(255, 255, 255);
+  }

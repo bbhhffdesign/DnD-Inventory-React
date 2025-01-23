@@ -1,8 +1,30 @@
+import { useState, useEffect } from "react";
+
 export default function CreateList({
   updatedInventory,
   setInventory,
   onSellItem,
 }) {
+  const [lockedCategories, setLockedCategories] = useState({});
+  const [visibleDescriptions, setVisibleDescriptions] = useState({});
+  const [expandedCategories, setExpandedCategories] = useState(() => {
+    // Leer el estado inicial de localStorage
+    const savedState = localStorage.getItem("expandedCategories");
+    return savedState ? JSON.parse(savedState) : {};
+  });
+
+  // Guardar el estado en localStorage cada vez que cambie expandedCategories
+  useEffect(() => {
+    localStorage.setItem("expandedCategories", JSON.stringify(expandedCategories));
+  }, [expandedCategories]);
+
+  function toggleCategoryDropdown(category) {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  }
+
   function updateQuantity(category, index, delta) {
     setInventory({
       [category]: updatedInventory[category].map((item, i) =>
@@ -23,86 +45,149 @@ export default function CreateList({
     setInventory({
       equipment: updatedInventory.equipment
         .map((item, i) => (i === index ? { ...item, checked } : item))
-        .sort((a, b) => (b.checked ? 1 : -1) - (a.checked ? 1 : -1)), // Ordenar con los seleccionados al inicio
+        .sort((a, b) => (b.checked ? 1 : -1) - (a.checked ? 1 : -1)),
     });
+  }
+
+  function toggleLockCategory(category) {
+    setLockedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  }
+
+  function toggleDescriptionVisibility(category, index) {
+    const key = `${category}-${index}`;
+    setVisibleDescriptions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   }
 
   return Object.entries(updatedInventory)
     .filter(([category]) => category !== "wallet" && category !== "maxWeight")
     .map(([category, items]) => (
-      <div key={category}>
-        <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-        {items.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th></th>
-                <th>Peso</th>
-                <th>Valor</th>
-                <th>Cantidad</th>
-                <th>Vender</th>
-                <th></th>
-              </tr>
-            </thead>
-            {items.map((item, index) => (
-              <tbody key={index}>
+      <div key={category} className="category__container">
+        <div
+          className="category__bar"
+          onClick={(e) => {
+            if (e.target.tagName !== "INPUT") {
+              toggleCategoryDropdown(category);
+            }
+          }}
+        >
+          <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+          <input
+            type="checkbox"
+            name="lock-category"
+            checked={lockedCategories[category] || false}
+            onChange={(e) => {
+              e.stopPropagation(); // Evita que el clic se propague al contenedor
+              toggleLockCategory(category);
+            }}
+          />
+        </div>
+        <div
+          className={`item__dropdown ${
+            expandedCategories[category] ? "expanded" : ""
+          }`}
+        >
+          {items.length > 0 ? (
+            <table className="item__table">
+              <thead className="item__headtable">
                 <tr>
-                  <td>
-                    {category === "equipment" && (
-                      <input
-                        type="checkbox"
-                        checked={item.checked || false}
-                        onChange={(e) =>
-                          toggleEquipmentItem(index, e.target.checked)
+                  <th></th>
+                  <th></th>
+                  <th>
+                    <img
+                      src="./src/assets/weight.png"
+                      style={{ width: "1rem", height: "1rem" }}
+                      alt=""
+                    />
+                  </th>
+                  <th>💲</th>
+                  <th>Cantidad</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              {items.map((item, index) => {
+                const key = `${category}-${index}`;
+                return (
+                  <tbody key={index} className="item__bodytable">
+                    <tr>
+                      <td>
+                        {category === "equipment" && (
+                          <input
+                            type="checkbox"
+                            checked={item.checked || false}
+                            onChange={(e) =>
+                              toggleEquipmentItem(index, e.target.checked)
+                            }
+                            disabled={lockedCategories[category] || false}
+                          />
+                        )}
+                      </td>
+                      <td
+                        onClick={() =>
+                          toggleDescriptionVisibility(category, index)
                         }
-                      />
+                      >
+                        {item.name}
+                      </td>
+                      <td>{item.weight}</td>
+                      <td>{item.value}</td>
+                      <td>
+                        <button
+                          className="pure-button"
+                          onClick={() => updateQuantity(category, index, -1)}
+                          disabled={lockedCategories[category] || false}
+                        >
+                          −
+                        </button>
+                        {item.quantity}
+                        <button
+                          className="pure-button"
+                          onClick={() => updateQuantity(category, index, 1)}
+                          disabled={lockedCategories[category] || false}
+                        >
+                          +
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="pure-button"
+                          onClick={() =>
+                            onSellItem({ category, index, ...item })
+                          }
+                          disabled={lockedCategories[category] || false}
+                        >
+                          Vender
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="pure-button"
+                          onClick={() => deleteItem(category, index)}
+                          disabled={lockedCategories[category] || false}
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                    {visibleDescriptions[key] && (
+                      <tr className="item__description">
+                        <td colSpan="7">{item.description}</td>
+                      </tr>
                     )}
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.weight}</td>
-                  <td>{item.value}</td>
-                  <td>
-                    <button
-                      className="pure-button"
-                      onClick={() => updateQuantity(category, index, -1)}
-                    >
-                      −
-                    </button>
-                    {item.quantity}
-                    <button
-                      className="pure-button"
-                      onClick={() => updateQuantity(category, index, 1)}
-                    >
-                      +
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="pure-button"
-                      onClick={() => onSellItem({ category, index, ...item })}
-                    >
-                      Vender
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="pure-button"
-                      onClick={() => deleteItem(category, index)}
-                    >
-                      X
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="7">{item.description}</td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        ) : (
-          <p>No hay items</p>
-        )}
+                  </tbody>
+                );
+              })}
+            </table>
+          ) : (
+            <p>No hay items</p>
+          )}
+        </div>
       </div>
     ));
 }
