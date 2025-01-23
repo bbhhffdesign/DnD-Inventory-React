@@ -48,7 +48,7 @@ function InventoryApp() {
     maxWeight: "", // Default para evitar errores
   };
   const totalWeight = calculateTotalWeight(inventory);
-  const [dropdownCheck, setDropdownChecked] = useState(false)
+  const [dropdownCheck, setDropdownChecked] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("allInventories", JSON.stringify(allInventories));
@@ -131,8 +131,6 @@ function InventoryApp() {
     input.click();
   }
 
-  
-
   return (
     <main className="frame">
       <header className="inventory__header">
@@ -147,11 +145,16 @@ function InventoryApp() {
               </option>
             ))}
           </select>
-          <input type="checkbox"
+          <input
+            type="checkbox"
             className="header__dropdown-btn"
             onChange={(e) => setDropdownChecked(e.target.checked)}
           />
-          <div className={`header__dropdown-list ${dropdownCheck ? "" : "dropdown-transition"}`}>
+          <div
+            className={`header__dropdown-list ${
+              dropdownCheck ? "" : "dropdown-transition"
+            }`}
+          >
             <button
               className="pure-button"
               onClick={() => {
@@ -191,22 +194,25 @@ function InventoryApp() {
           </div>
         </div>
         <div className="inventory__header-bottom">
-          <p
-            style={{
-              color: totalWeight > inventory.maxWeight ? "red" : "black",
-            }}
-          >
-            <strong>Peso Total:</strong> {totalWeight} kg /{" "}
-            <input
-              type="number"
-              value={inventory.maxWeight || ""}
-              placeholder="Capacidad de Carga"
-              onChange={(e) => {
-                const maxWeight = Number(e.target.value) || "";
-                setInventory({ maxWeight });
+          <div className="header__bottom-weight">
+          <img src="./assets/weight.png" style={{width: "2rem", height : "2rem"}} alt="" />
+            <p
+              style={{
+                color: totalWeight > inventory.maxWeight ? "red" : "black",
               }}
-            />
-          </p>
+            >
+               {totalWeight} /{" "}
+              <input
+                type="number"
+                value={inventory.maxWeight || ""}
+                placeholder="Capacidad de Carga"
+                onChange={(e) => {
+                  const maxWeight = Number(e.target.value) || "";
+                  setInventory({ maxWeight });
+                }}
+              />
+            </p>
+          </div>
           <div className="inventory__header-wealth">
             <div className="inventory__header-wealth-container">
               <img
@@ -242,7 +248,7 @@ function InventoryApp() {
               />
             </div>
             <button
-              className="pure-button addmoney" 
+              className="pure-button addmoney"
               onClick={() => setShowAddMoneyModal(true)} // Muestra el modal
             >
               💲
@@ -271,7 +277,7 @@ function InventoryApp() {
               placeholder="Oro"
               value={modalValues.gold}
               onChange={(e) => {
-                const value = parseInt(e.target.value, 10) || 0;;
+                const value = parseInt(e.target.value, 10) || 0;
                 setModalValues({ ...modalValues, gold: value });
               }}
             />

@@ -36,13 +36,13 @@ export default function CreateList({
           <table>
             <thead>
               <tr>
-                <th>Seleccionado</th>
-                <th>Nombre</th>
+                <th></th>
+                <th></th>
                 <th>Peso</th>
                 <th>Valor</th>
                 <th>Cantidad</th>
                 <th>Vender</th>
-                <th>Eliminar</th>
+                <th></th>
               </tr>
             </thead>
             {items.map((item, index) => (

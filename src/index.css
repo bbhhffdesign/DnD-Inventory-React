@@ -55,7 +55,7 @@
 }
 
 .inventory__header .inventory__header-bottom {
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
 }
