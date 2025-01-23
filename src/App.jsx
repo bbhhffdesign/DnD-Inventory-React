@@ -98,30 +98,14 @@ function InventoryApp() {
     setShowSellForm(false);
   }
   function handleDownload() {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "application/json";
-    input.onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          try {
-            const importedData = JSON.parse(ev.target.result);
-            setAllInventories((prev) => ({
-              ...prev,
-              ...importedData,
-            }));
-          } catch (err) {
-            alert(
-              "Error al importar el archivo. Asegúrate de que sea un JSON válido."
-            );
-          }
-        };
-        reader.readAsText(file);
-      }
-    };
-    input.click();
+    const dataStr = JSON.stringify(allInventories, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "inventarios.json";
+    link.click();
+    URL.revokeObjectURL(url);
   }
   function handleUpload() {
     const input = document.createElement("input");
@@ -148,13 +132,9 @@ function InventoryApp() {
   }
 
   return (
-    <>
+    <main className="frame">
       <header className="inventory__header">
         <div className="inventory__header-top">
-          <label>
-            {" "}
-            <h2>Inventario de:</h2>
-          </label>
           <select
             value={currentInventory}
             onChange={(e) => setCurrentInventory(e.target.value)}
@@ -165,45 +145,45 @@ function InventoryApp() {
               </option>
             ))}
           </select>
-          <button
-            className="pure-button"
-            onClick={() => {
-              const newName = prompt("Nombre del nuevo inventario:");
-              if (newName)
-                handleCreateInventory(
-                  newName,
-                  allInventories,
-                  setAllInventories,
-                  setCurrentInventory
-                );
-            }}
-          >
-            Crear Inventario
-          </button>
-          {currentInventory !== "default" && (
+          <button className="header__dropdown-btn" onClick={console.log("AAAasAs")}>AA</button>
+          <div className="header__dropdown-list">
             <button
-              onClick={() =>
-                handleDeleteInventory(
-                  currentInventory,
-                  allInventories,
-                  setAllInventories,
-                  setCurrentInventory
-                )
-              }
+              className="pure-button"
+              onClick={() => {
+                const newName = prompt("Nombre del nuevo inventario:");
+                if (newName)
+                  handleCreateInventory(
+                    newName,
+                    allInventories,
+                    setAllInventories,
+                    setCurrentInventory
+                  );
+              }}
             >
-              Eliminar Inventario
+              Crear Inventario
             </button>
-          )}
-          <button
-            className="pure-button"
-            onClick={handleDownload}
-          >
-            Exportar Inventarios
-          </button>
+            {currentInventory !== "default" && (
+              <button
+                onClick={() =>
+                  handleDeleteInventory(
+                    currentInventory,
+                    allInventories,
+                    setAllInventories,
+                    setCurrentInventory
+                  )
+                }
+              >
+                Eliminar Inventario
+              </button>
+            )}
+            <button className="pure-button" onClick={handleDownload}>
+              Exportar Inventarios
+            </button>
 
-          <button className="pure-button" onClick={handleUpload}>
-            Importar Inventarios
-          </button>
+            <button className="pure-button" onClick={handleUpload}>
+              Importar Inventarios
+            </button>
+          </div>
         </div>
         <div className="inventory__header-bottom">
           <p
@@ -329,7 +309,7 @@ function InventoryApp() {
       <button className="pure-button" onClick={() => setShowForm(!showForm)}>
         {showForm ? "Cerrar formulario" : "Agregar Item"}
       </button>
-    </>
+    </main>
   );
 }
 

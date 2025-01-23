@@ -1,8 +1,34 @@
+
+
 .inventory__header {
-    background-color: rgb(163, 163, 163);
+    width: 100%;
+    height: auto;
+    background-color: red;
   }
   .inventory__header .inventory__header-top {
+    z-index: 2;
     display: flex;
+    flex-wrap: no-wrap;
+    position: relative;
+    height: 3rem;
+
+    & > select{
+      flex: 1;
+    }
+    .header__dropdown-btn{
+      width: 100px;
+      background-color: black;
+      color: #333;
+    }
+    
+    .header__dropdown-list{
+      z-index: -1;
+      top: 100%;
+      right: 0;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+    }
   }
   .inventory__header .inventory__header-bottom {
     display: flex;
