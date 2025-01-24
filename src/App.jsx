@@ -154,16 +154,15 @@ function InventoryApp() {
           </div>
           <div className="inventory__header-bottom">
             <div className="header__bottom-weight">
+              <img
+                src="./src/assets/weight.png"
+                alt=""
+              />
               <p
                 style={{
                   color: totalWeight > inventory.maxWeight ? "red" : "black",
                 }}
               >
-                <img
-                  src="./src/assets/weight.png"
-                  style={{ width: "1rem", height: "1rem" }}
-                  alt=""
-                />
                 {totalWeight} /{" "}
                 <input
                   type="number"

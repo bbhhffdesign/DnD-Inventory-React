@@ -34,7 +34,7 @@
   inset: 0;
   background-image: url("./assets/frame-2-1.png");
   background-color: rgb(210, 210, 210);
-  background-size: 100% 100%;
+  background-size: 100% 100%, cover;
   background-repeat: no-repeat;
   z-index: -1;
 }
@@ -45,6 +45,7 @@
 }
 
 .inventory__header .inventory__header-top {
+  padding: 0;
   z-index: 2;
   display: flex;
   flex-wrap: no-wrap;
@@ -55,7 +56,8 @@
   all: unset;
   flex: 1;
   font-size: 3rem;
-  padding-left: 0.5rem;
+  margin-left: 1rem;
+  border-bottom: solid 2px black;
 }
 .inventory__header .inventory__header-top .header__dropdown-btn {
   position: relative;
@@ -90,12 +92,17 @@
 }
 .inventory__header .inventory__header-bottom p input {
   all: unset;
-  width: 3rem;
+  width: 2rem;
 }
 
 .header__bottom-weight {
   display: flex;
   align-items: center;
+  border: solid 1px red;
+}
+.header__bottom-weight img {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .inventory__header-wealth p,
@@ -121,7 +128,7 @@
 }
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container img {
-  height: 30px;
+  height: 1.5rem;
   width: auto;
 }
 
