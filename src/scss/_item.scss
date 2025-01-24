@@ -3,14 +3,20 @@
 .category__container{
     border-radius: .5rem;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .category__bar{
     position: relative;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .5rem clamp(2rem, 0.5rem + 6.667vw, 3rem);
     height: 3rem;
+
+    h2, input{ z-index: 1;}
 
     @include device(md){
         height: 4rem;
@@ -19,20 +25,19 @@
     
     @include device(xxlarge){
         height: 5rem;
-        // padding: .5rem clamp(2rem, 1rem + 6.667vw, 3rem);
     }
 
     &::before{
         content: "";
-        z-index: -1;
+        z-index: 0;
         position: absolute;
         inset: 0;
-        background-image: url("./src/assets/category-frame.png");
+        background-image: url("./assets/category-frame.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
 
         @include device(xxlarge){
-            background-image: url("./src/assets/category-frame-xxlg.png");
+            background-image: url("./assets/category-frame-xxlg.png");
         }
 
     }
@@ -40,13 +45,51 @@
         margin: 0;
     }
 }
+
+.item__dropdown{
+    width: 95%;
+    border-radius: 1rem;
+}
 .item__table {
-  background-color: red;
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
   text-align: center;
+  background-image: url("./assets/paper-texture.jpg");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+//   border-spacing: 0 .25rem;
+  border-collapse: separate; 
+  padding-top: .5rem;
 }
+
 .item__description{
+    border-top: solid 1px var(--color-black) ;
     text-align: left;
+    background-color: #15151550;
+}
+.item__bodytable{
+    position: relative;
+
+    &::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 2px;
+        background-color: var(--color-black);
+        width: 90%;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    p{
+        margin: .5rem 0;
+    }
+    button{
+        padding: 0;
+        all: unset;
+        padding: .5rem 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 }
