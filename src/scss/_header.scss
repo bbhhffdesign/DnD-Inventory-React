@@ -1,3 +1,5 @@
+@use "mixins" as *;
+
 .inventory__header {
   position: relative;
   width: 100%;
@@ -10,10 +12,28 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("./assets/header-frame.png");
-    background-size: 100% 100%, cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     z-index: -1;
+    
+    @include device(small){
+      background-image: url("./assets/header-frame-xsm.png");
+
+    }
+    @include device(medium) {
+      background-image: url("./assets/header-frame-sm.png");
+    }
+    @include device(large) {
+      background-image: url("./assets/header-frame-md.png");
+    }
+    @include device(xlarge) {
+      background-image: url("./assets/header-frame-lg.png");
+    }
+    @include device(xxlarge) {
+      background-image: url("./assets/header-frame-xxlg.png");
+    }
+
+
   }
 
   .inventory__header-inner {
@@ -21,11 +41,6 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-}
-
-.inventory__header-top,
-.inventory__header-bottom {
-  // padding: 0.5rem 1rem;
 }
 .inventory__header .inventory__header-top {
   padding: 0;

@@ -2,6 +2,9 @@ p,
 input[type="number"]{
   font-size: clamp(1rem, -3rem + 17.778vw, 2rem);
 }
+h2{
+  font-size: clamp(1.5rem, 0.357rem + 5.714vw, 2.5rem)
+}
 
 .select-name{
   all: unset;

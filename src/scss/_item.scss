@@ -1,3 +1,5 @@
+@use "mixins" as *;
+
 .category__container{
     border-radius: .5rem;
     overflow: hidden;
@@ -7,9 +9,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 clamp(2rem, 0.5rem + 6.667vw, 3rem);
-    
+    padding: .5rem clamp(2rem, 0.5rem + 6.667vw, 3rem);
     height: 3rem;
+
+    @include device(md){
+        height: 4rem;
+        padding: 1rem inherit;
+    }
+    
+    @include device(xxlarge){
+        height: 5rem;
+        // padding: .5rem clamp(2rem, 1rem + 6.667vw, 3rem);
+    }
 
     &::before{
         content: "";
@@ -19,6 +30,10 @@
         background-image: url("./src/assets/category-frame.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
+
+        @include device(xxlarge){
+            background-image: url("./src/assets/category-frame-xxlg.png");
+        }
 
     }
     h2{
