@@ -134,125 +134,89 @@ function InventoryApp() {
   return (
     <main className="frame">
       <header className="inventory__header">
-        <div className="inventory__header-top">
-          <select
-            value={currentInventory}
-            onChange={(e) => setCurrentInventory(e.target.value)}
-          >
-            {Object.keys(allInventories).map((name) => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="checkbox"
-            className="header__dropdown-btn"
-            onChange={(e) => setDropdownChecked(e.target.checked)}
-          />
-          {/* <div
-            className={`header__dropdown-list ${
-              dropdownCheck ? "" : "dropdown-transition"
-            }`}
-          >
-            <button
-              className="pure-button"
-              onClick={() => {
-                const newName = prompt("Nombre del nuevo inventario:");
-                if (newName)
-                  handleCreateInventory(
-                    newName,
-                    allInventories,
-                    setAllInventories,
-                    setCurrentInventory
-                  );
-              }}
+        <div className="invetory__header-inner">
+          <div className="inventory__header-top">
+            <select
+              value={currentInventory}
+              onChange={(e) => setCurrentInventory(e.target.value)}
             >
-              Crear Inventario
-            </button>
-            {currentInventory !== "default" && (
-              <button
-                onClick={() =>
-                  handleDeleteInventory(
-                    currentInventory,
-                    allInventories,
-                    setAllInventories,
-                    setCurrentInventory
-                  )
-                }
-              >
-                Eliminar Inventario
-              </button>
-            )}
-            <button className="pure-button" onClick={handleDownload}>
-              Exportar Inventarios
-            </button>
-
-            <button className="pure-button" onClick={handleUpload}>
-              Importar Inventarios
-            </button>
-          </div> */}
-        </div>
-        <div className="inventory__header-bottom">
-          <div className="header__bottom-weight">
-            <p
-              style={{
-                color: totalWeight > inventory.maxWeight ? "red" : "black",
-              }}
-            >
-              <img src="./src/assets/weight.png" style={{width: "1rem", height : "1rem"}} alt="" />
-               {totalWeight} /{" "}
-              <input
-                type="number"
-                value={inventory.maxWeight || ""}
-                placeholder="Capacidad de Carga"
-                onChange={(e) => {
-                  const maxWeight = Number(e.target.value) || "";
-                  setInventory({ maxWeight });
-                }}
-              />
-            </p>
+              {Object.keys(allInventories).map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+            <input
+              type="checkbox"
+              className="header__dropdown-btn"
+              onChange={(e) => setDropdownChecked(e.target.checked)}
+            />
           </div>
-          <div className="inventory__header-wealth">
-            <div className="inventory__header-wealth-container">
-              <img
-                src="https://img.icons8.com/?size=100&id=20043&format=png&color=000000"
-                alt=""
-              />
-              <input
-                type="number"
-                name="gold"
-                value={inventory.wallet?.gold || 0}
-              />
+          <div className="inventory__header-bottom">
+            <div className="header__bottom-weight">
+              <p
+                style={{
+                  color: totalWeight > inventory.maxWeight ? "red" : "black",
+                }}
+              >
+                <img
+                  src="./src/assets/weight.png"
+                  style={{ width: "1rem", height: "1rem" }}
+                  alt=""
+                />
+                {totalWeight} /{" "}
+                <input
+                  type="number"
+                  value={inventory.maxWeight || ""}
+                  placeholder="Capacidad de Carga"
+                  onChange={(e) => {
+                    const maxWeight = Number(e.target.value) || "";
+                    setInventory({ maxWeight });
+                  }}
+                />
+              </p>
             </div>
-            <div className="inventory__header-wealth-container">
-              <img
-                src="https://img.icons8.com/?size=100&id=60371&format=png&color=000000"
-                alt=""
-              />
-              <input
-                type="number"
-                name="silver"
-                value={inventory.wallet?.silver || 0}
-              />
+            <div className="inventory__header-wealth">
+              <div className="inventory__header-wealth-container">
+                <img
+                  src="./src/assets/coin-gold.png"
+                  alt=""
+                />
+                <input
+                  type="number"
+                  name="gold"
+                  value={inventory.wallet?.gold || 0}
+                />
+              </div>
+              <div className="inventory__header-wealth-container">
+                <img
+                  src="./src/assets/coin-silver.png"
+                  alt=""
+                />
+                <input
+                  type="number"
+                  name="silver"
+                  value={inventory.wallet?.silver || 0}
+                />
+              </div>
+              <div className="inventory__header-wealth-container">
+                <img
+                  src="./src/assets/coin-copper.png"
+                  alt=""
+                />
+                <input
+                  type="number"
+                  name="copper"
+                  value={inventory.wallet?.copper || 0}
+                />
+              </div>
+              <button
+                className="pure-button addmoney"
+                onClick={() => setShowAddMoneyModal((prev) => !prev)} // Muestra el modal
+              >
+                💲
+              </button>
             </div>
-            <div className="inventory__header-wealth-container">
-              <img
-                src="https://img.icons8.com/?size=100&id=hvR5miLxMhJf&format=png&color=000000"
-                alt=""
-              />
-              <input
-                type="number"
-                name="copper"
-                value={inventory.wallet?.copper || 0}
-              />
-            </div>
-            <button
-              className="pure-button addmoney"
-              onClick={() => setShowAddMoneyModal((prev) => !prev)} // Muestra el modal
-            >
-              💲
-            </button>
           </div>
         </div>
       </header>

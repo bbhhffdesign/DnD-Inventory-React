@@ -6,9 +6,15 @@
 
 *{
     box-sizing: border-box;
+    &:before, &:after {
+        box-sizing: border-box;
+      }
 }
 body {
     margin: 0;
     background-color: #333;
     color: rgb(255, 255, 255);
+
+    background-image: url("./assets/stone-gb4.jpg");
+    background-size: cover;
   }
