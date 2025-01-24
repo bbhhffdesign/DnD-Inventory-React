@@ -134,7 +134,7 @@ function InventoryApp() {
   return (
     <main className="frame">
       <header className="inventory__header">
-        <div className="invetory__header-inner">
+        <div className="inventory__header-inner">
           <div className="inventory__header-top">
             <select
               value={currentInventory}

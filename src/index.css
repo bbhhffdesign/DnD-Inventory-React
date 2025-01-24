@@ -13,6 +13,14 @@
   max-height: 1000px; /* Ajusta según el tamaño máximo esperado */
 }
 
+p {
+  font-size: 1.5rem;
+}
+
+input[type=number] {
+  font-size: 1.5rem;
+}
+
 .frame {
   position: relative;
   width: 100vw;
@@ -24,9 +32,8 @@
   position: relative;
   width: 100%;
   height: auto;
-  font-size: 1.1rem;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 1rem 1.5rem;
 }
 .inventory__header::before {
   content: "";
@@ -38,10 +45,10 @@
   background-repeat: no-repeat;
   z-index: -1;
 }
-
-.inventory__header-top,
-.inventory__header-bottom {
-  padding: 0.5rem 1rem;
+.inventory__header .inventory__header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .inventory__header .inventory__header-top {
@@ -49,19 +56,19 @@
   z-index: 2;
   display: flex;
   flex-wrap: no-wrap;
+  gap: 1rem;
   position: relative;
-  height: 3rem;
 }
 .inventory__header .inventory__header-top > select {
   all: unset;
   flex: 1;
-  font-size: 3rem;
-  margin-left: 1rem;
   border-bottom: solid 2px black;
 }
 .inventory__header .inventory__header-top .header__dropdown-btn {
   position: relative;
-  width: 100px;
+  height: inherit;
+  width: 3rem;
+  height: auto;
   background-color: black;
   color: #333;
 }
@@ -92,13 +99,12 @@
 }
 .inventory__header .inventory__header-bottom p input {
   all: unset;
-  width: 2rem;
+  width: 3rem;
 }
 
 .header__bottom-weight {
   display: flex;
   align-items: center;
-  border: solid 1px red;
 }
 .header__bottom-weight img {
   height: 1.5rem;
@@ -113,18 +119,19 @@
 .inventory__header .inventory__header-wealth {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  flex: 1;
 }
 .inventory__header .inventory__header-wealth .addmoney {
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   height: 2rem;
+  border: solid 1px black;
 }
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.2rem;
 }
 
 .inventory__header .inventory__header-wealth .inventory__header-wealth-container img {
@@ -132,9 +139,12 @@
   width: auto;
 }
 
-.inventory__header .inventory__header-wealth .inventory__header-wealth-container input {
+.inventory__header-wealth-container:nth-of-type(1) input {
+  width: 3rem;
+}
+.inventory__header-wealth-container input {
   all: unset;
-  width: 30px;
+  width: 1.5rem;
 }
 
 .category__container {
