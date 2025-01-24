@@ -1,13 +1,26 @@
 .category__container{
-    background-color: #a737a3;
-    border: solid 1px black;
     border-radius: .5rem;
     overflow: hidden;
 }
 .category__bar{
+    position: relative;
     display: flex;
     justify-content: space-between;
-    background-color: #223ead;
+    align-items: center;
+    padding: 0 clamp(2rem, 0.5rem + 6.667vw, 3rem);
+    
+    height: 3rem;
+
+    &::before{
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background-image: url("./src/assets/category-frame.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+    }
     h2{
         margin: 0;
     }

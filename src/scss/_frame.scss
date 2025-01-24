@@ -1,7 +1,14 @@
+#root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .frame{
     position: relative;
     width: 100vw;
-    max-width: 450px;
+    max-width: 600px;
+    min-height: 100vh;
     padding: .5rem;
+
 }
 

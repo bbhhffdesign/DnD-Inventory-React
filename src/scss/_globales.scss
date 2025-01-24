@@ -1,7 +1,14 @@
-p {
-  font-size: 1.5rem;
+p,
+input[type="number"]{
+  font-size: clamp(1rem, -3rem + 17.778vw, 2rem);
 }
 
-input[type="number"]{
-  font-size: 1.5rem;
+.select-name{
+  all: unset;
+  font-size: 3rem;
+
+  option{
+    font-size: 3rem;
+
+  }
 }

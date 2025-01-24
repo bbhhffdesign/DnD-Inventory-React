@@ -136,7 +136,7 @@ function InventoryApp() {
       <header className="inventory__header">
         <div className="inventory__header-inner">
           <div className="inventory__header-top">
-            <select
+            <select className="select-name"
               value={currentInventory}
               onChange={(e) => setCurrentInventory(e.target.value)}
             >
@@ -167,7 +167,7 @@ function InventoryApp() {
                 <input
                   type="number"
                   value={inventory.maxWeight || ""}
-                  placeholder="Capacidad de Carga"
+                  placeholder="0"
                   onChange={(e) => {
                     const maxWeight = Number(e.target.value) || "";
                     setInventory({ maxWeight });
@@ -178,10 +178,11 @@ function InventoryApp() {
             <div className="inventory__header-wealth">
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./assets/coin-gold.png"
+                  src="./src/assets/coin-gold.png"
                   alt=""
                 />
                 <input
+                
                   type="number"
                   name="gold"
                   value={inventory.wallet?.gold || 0}
@@ -189,7 +190,7 @@ function InventoryApp() {
               </div>
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./assets/coin-silver.png"
+                  src="./src/assets/coin-silver.png"
                   alt=""
                 />
                 <input
@@ -200,7 +201,7 @@ function InventoryApp() {
               </div>
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./assets/coin-copper.png"
+                  src="./src/assets/coin-copper.png"
                   alt=""
                 />
                 <input

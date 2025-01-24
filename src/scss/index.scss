@@ -1,9 +1,11 @@
+@forward "variables"; 
 @forward "transitions"; 
-@forward "globales"; 
 @forward "frame"; 
 @forward "header"; 
 @forward "item"; 
 @forward "modal"; 
+@forward "globales"; 
+
 
 *{
     box-sizing: border-box;
@@ -13,8 +15,7 @@
 }
 body {
     margin: 0;
-    background-color: #333;
-    color: rgb(255, 255, 255);
+    color: var(--color-black);
 
     background-image: url("./assets/stone-gb4.jpg");
     background-size: cover;
