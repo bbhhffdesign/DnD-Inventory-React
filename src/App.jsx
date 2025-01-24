@@ -178,7 +178,7 @@ function InventoryApp() {
             <div className="inventory__header-wealth">
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./src/assets/coin-gold.png"
+                  src="./assets/coin-gold.png"
                   alt=""
                 />
                 <input
@@ -189,7 +189,7 @@ function InventoryApp() {
               </div>
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./src/assets/coin-silver.png"
+                  src="./assets/coin-silver.png"
                   alt=""
                 />
                 <input
@@ -200,7 +200,7 @@ function InventoryApp() {
               </div>
               <div className="inventory__header-wealth-container">
                 <img
-                  src="./src/assets/coin-copper.png"
+                  src="./assets/coin-copper.png"
                   alt=""
                 />
                 <input
