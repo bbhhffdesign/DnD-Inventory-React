@@ -295,8 +295,8 @@ function InventoryApp() {
         setInventory={setInventory}
         onSellItem={handleSellItem}
       />
-      <button className="pure-button" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Cerrar formulario" : "Agregar Item"}
+      <button className="additem-button" onClick={() => setShowForm(!showForm)}>
+        {/* {showForm ? "Cerrar formulario" : "Agregar Item"} */}
       </button>
     </main>
   );

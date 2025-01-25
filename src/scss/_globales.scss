@@ -1,17 +1,60 @@
 p,
 input[type="number"]{
   font-size: clamp(1rem, -3rem + 17.778vw, 2rem);
+  font-family: "Roboto Condensed", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
+input[type="number"]{
+  font-family: "Germania One", serif;
+}
+
+th,
+td{
+  font-family: "Roboto Condensed", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  text-shadow: 1px 1px 0px rgb(255, 255, 255);
+
+  font-size: 1.2rem;
+}
+
 h2{
-  font-size: clamp(1.5rem, 0.357rem + 5.714vw, 2.5rem)
+  font-size: clamp(2rem, 1.429rem + 1.524vw, 2.8rem);
+  font-family: "Germania One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .select-name{
   all: unset;
   font-size: 3rem;
+  font-family: "Germania One", serif;
+  font-weight: 400;
+  font-style: normal;
 
   option{
     font-size: 3rem;
+    font-family: "Germania One", serif;
+    font-weight: 400;
+    font-style: normal;
 
   }
+}
+
+
+
+.additem-button{
+  all: unset;
+  z-index: 1;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background-image: url("./src/assets/add-button.png");
+  background-size: contain;
+  width: 4rem;
+  height: 4rem;
+
 }

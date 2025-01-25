@@ -39,6 +39,7 @@ export default function CreateList({
   }
 
   function deleteItem(category, index) {
+
     setInventory({
       [category]: updatedInventory[category].filter((_, i) => i !== index),
     });
@@ -109,7 +110,7 @@ export default function CreateList({
                     />
                   </th>
                   <th>💲</th>
-                  <th>Cantidad</th>
+                  <th>Cant.</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -131,7 +132,7 @@ export default function CreateList({
                             />
                           )}
                         </td>
-                        <td
+                        <td style={{minWidth : "100%"}}
                           onClick={() =>
                             toggleDescriptionVisibility(category, index)
                           }
@@ -179,8 +180,8 @@ export default function CreateList({
                         </td>
                       </tr>
                       {visibleDescriptions[key] && (
-                        <tr className="item__description">
-                          <td colSpan="7"><p>{item.description}</p></td>
+                        <tr >
+                          <td className="item__description" colSpan="7" style={{padding: "1rem"}}>{item.description}</td>
                         </tr>
                       )}
                     </tbody>
