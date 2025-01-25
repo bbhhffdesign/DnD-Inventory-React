@@ -12,9 +12,21 @@
     min-height: 100vh;
     padding: .5rem;
 
+
     @include device(xxlarge){
         padding: 1rem 2rem;
     }
 
+}
+
+.overlay{
+    
+    &::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.518);
+        z-index: 2;
+    }
 }
 

@@ -5,9 +5,21 @@ export default function SellItemForm({
   onSell,
   onClose,
 }) {
+  const incrementQuantity = () => {
+    if (quantity < item.quantity) {
+      setQuantity(quantity + 1); // Incrementa la cantidad, pero no excede el máximo
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1); // Decrementa la cantidad, pero no baja de 1
+    }
+  };
+
   return (
     <form
-      className="pure-form pure-form-stacked modal"
+      className="pure-form pure-form-stacked modal sellitem"
       onSubmit={(e) => {
         e.preventDefault();
         onSell();
@@ -27,20 +39,50 @@ export default function SellItemForm({
       <p>
         <strong>Cantidad:</strong> {item.quantity}
       </p>
-      <input
-        type="number"
-        value={quantity}
-        min="1"
-        max={item.quantity}
-        onChange={(e) => setQuantity(Number(e.target.value))}
-        required
-      />
-      <div>
-        <button className="pure-button" type="submit">
-          Vender
+      <div className="quantity-controls">
+        <button
+          type="button"
+          onClick={decrementQuantity}
+          style={{
+            padding: "0.5rem",
+            fontSize: "1.5rem",
+            width: "2rem",
+            height: "2rem",
+          }}
+        >-
+        </button>
+        <input
+          type="number"
+          value={quantity}
+          min="1"
+          max={item.quantity}
+          readOnly
+          style={{
+            textAlign: "center",
+            width: "3rem",
+            margin: "0 0.5rem",
+            fontSize: "1rem",
+          }}
+        />
+        <button
+          type="button"
+          onClick={incrementQuantity}
+          style={{
+            padding: "0.5rem",
+            fontSize: "1.5rem",
+            width: "2rem",
+            height: "2rem",
+          }}
+        >
+          +
+        </button>
+      </div>
+      <div className="modaladdmoney-buttons">
+        <button className="pure-button" type="submit" style={{ margin: "0" }}>
+          <img src="./src/assets/tick.png" alt="" />
         </button>
         <button className="pure-button" type="button" onClick={onClose}>
-          Cancelar
+          <img src="./src/assets/x.png" alt="" />
         </button>
       </div>
     </form>

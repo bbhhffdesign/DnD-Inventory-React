@@ -53,6 +53,19 @@ function InventoryApp() {
   const [dropdownCheck, setDropdownChecked] = useState(false);
 
   useEffect(() => {
+    // Verifica si alguno de los modales está abierto
+    const isModalOpen =
+      showForm || showSellForm || showAddMoneyModal || dropdownCheck;
+
+    const frameElement = document.querySelector(".frame");
+    if (isModalOpen) {
+      frameElement?.classList.add("overlay");
+    } else {
+      frameElement?.classList.remove("overlay");
+    }
+  }, [showForm, showSellForm, showAddMoneyModal, dropdownCheck]);
+
+  useEffect(() => {
     localStorage.setItem("allInventories", JSON.stringify(allInventories));
   }, [allInventories]);
 
@@ -132,7 +145,16 @@ function InventoryApp() {
   }
 
   return (
-    <main className="frame">
+    <main className="frame"
+    onClick={(e) => {
+      // Cierra el modal si el clic no ocurre dentro del contenido
+      if (e.target.classList.contains("overlay")) {
+        setShowAddMoneyModal(false);
+        setShowSellForm(false);
+        setDropdownChecked(false);
+        setShowForm(false);
+      }
+    }}>
       <header className="inventory__header">
         <div className="inventory__header-inner">
           <div className="inventory__header-top">
