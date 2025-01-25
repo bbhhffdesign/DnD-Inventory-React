@@ -20,13 +20,18 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
 
   return (
     <form
-      className="pure-form pure-form-stacked modal"
+      className="pure-form pure-form-stacked modal additemform"
       onSubmit={handleSubmit}
       style={{ border: "solid 1px white", padding: "1rem" }}
     >
       <h2 style={{ margin: "0" }}>Crear Item</h2>
-      <input name="name" placeholder="Nombre" required />
-      <input name="description" placeholder="Descripción" required />
+      <input type="text" name="name" placeholder="Nombre" required />
+      <input
+        type="text"
+        name="description"
+        placeholder="Descripción"
+        required
+      />
       <input
         name="weight"
         type="number"
@@ -49,12 +54,12 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
         <option value="quest">Misión</option>
         <option value="misc">Misceláneo</option>
       </select>
-      <div>
-        <button className="pure-button" type="submit">
-          Crear
+      <div className="modaladdmoney-buttons">
+        <button className="pure-button" type="submit" style={{margin: "0"}}>
+          <img src="./src/assets/tick.png" alt="" />
         </button>
         <button className="pure-button" type="button" onClick={onClose}>
-          Cancelar
+          <img src="./src/assets/x.png" alt="" />
         </button>
       </div>
     </form>

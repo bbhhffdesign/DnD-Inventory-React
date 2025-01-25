@@ -259,16 +259,16 @@ function InventoryApp() {
                 setModalValues({ ...modalValues, gold: value });
               }}
             />
-            <div>
-              <button className="pure-button" type="submit">
-                Confirmar
+            <div className="modaladdmoney-buttons">
+              <button className="pure-button" type="submit" style={{margin: "0"}}>
+              <img src="./src/assets/tick.png" alt="" />
               </button>
               <button
                 className="pure-button"
                 type="button"
                 onClick={() => setShowAddMoneyModal(false)}
               >
-                Cancelar
+                <img src="./src/assets/x.png" alt="" />
               </button>
             </div>
           </form>
