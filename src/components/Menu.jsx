@@ -1,6 +1,7 @@
 function Menu({ dropdownCheck, setDropdownChecked, handleCreateInventory, handleDeleteInventory, currentInventory, allInventories, setAllInventories, setCurrentInventory, handleDownload, handleUpload }) {
     return (
       <div className="modal menu">
+        <h2 style={{margin: ".5rem 0", textAlign : "center"}}>Menu</h2>
         <button
           className="pure-button"
           onClick={() => {

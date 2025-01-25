@@ -36,11 +36,6 @@
 
   }
 
-  .inventory__header-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
 }
 .inventory__header .inventory__header-top {
   padding: 0;
@@ -104,13 +99,13 @@
 .header__bottom-weight {
   display: flex;
   align-items: center;
-  // font-size: 1.5rem;
-  // border: solid 1px red;
 
-  img {
-    height: 1.5rem;
-    width: 1.5rem;
-  }
+  
+
+  // img {
+  //   height: 1.5rem;
+  //   width: 1.5rem;
+  // }
 }
 
 .inventory__header-wealth,
@@ -158,4 +153,12 @@
     width: clamp(1.5rem, -2.5rem + 17.778vw, 2.5rem);
     // font-size: 1.5rem;
   }
+}
+
+
+.weight__icon{
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: url("./assets/weight.png");
+  background-size: 100% 100%;
 }

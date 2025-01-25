@@ -82,6 +82,7 @@ export default function CreateList({
         >
           <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
           <input
+          className="lock__category"
             type="checkbox"
             name="lock-category"
             checked={lockedCategories[category] || false}
@@ -102,12 +103,8 @@ export default function CreateList({
                 <tr>
                   <th></th>
                   <th></th>
-                  <th>
-                    <img
-                      src="./src/assets/weight.png"
-                      style={{ width: "1rem", height: "1rem" }}
-                      alt=""
-                    />
+                  <th className="weight__icon-container">
+                    <div className="weight__icon"></div>
                   </th>
                   <th>💲</th>
                   <th>Cant.</th>
@@ -189,7 +186,7 @@ export default function CreateList({
               })}
             </table>
           ) : (
-            <p>No hay items</p>
+            <p style={{textAlign: "center"}}>No hay items</p>
           )}
         </div>
       </div>

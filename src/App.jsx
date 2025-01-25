@@ -176,10 +176,7 @@ function InventoryApp() {
           </div>
           <div className="inventory__header-bottom">
             <div className="header__bottom-weight">
-              <img
-                src="./src/assets/weight.png"
-                alt=""
-              />
+              <div className="weight__icon"></div>
               <p
                 style={{
                   color: totalWeight > inventory.maxWeight ? "red" : "black",
@@ -259,7 +256,7 @@ function InventoryApp() {
       {showAddMoneyModal && (
         <div className="modal">
           <form
-            className="pure-form pure-form-stacked"
+            className="pure-form pure-form-stacked addmoney-form"
             onSubmit={(e) => {
               e.preventDefault();
               handleAddMoney(
