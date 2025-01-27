@@ -10,6 +10,9 @@ export default defineConfig({
       restart : '/src/index.css'
     })
   ],
-   base: '/DnD-Inventory-React/'
+   base: '/DnD-Inventory-React/',
+   build: {
+    outDir: 'dist', // Asegura que los archivos de compilación se generen aquí
+  }
 
 })
