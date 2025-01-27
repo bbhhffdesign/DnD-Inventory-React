@@ -123,7 +123,6 @@
 }
 
 .item__description {
-  // border-top: solid 1px var(--color-black) ;
   text-align: left;
   background-color: #15151579;
   white-space: normal;
@@ -151,13 +150,28 @@
   }
   button {
     padding: 0;
-    all: unset;
+    background-color: var(--color-grey);
+    border-radius: .5rem;
     padding: 0.5rem 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     &:disabled {
       filter: grayscale(100);
     }
+    &.removeButton,
+    &.addButton{
+      border: none;
+      color: transparent;
+    }
+    &.removeButton{
+      margin-right: .5rem;
+      clip-path: polygon(0 50%, 100% 100%, 100% 0);
+
+    }
+    &.addButton {
+        margin-left: .5rem;
+        clip-path: polygon(0 0, 0 100%, 100% 50%);
+      }
   }
 }
 
@@ -167,5 +181,22 @@
   .weight__icon{
     margin-left: 35%;
     background-position: center;
+  }
+}
+
+
+.equipItem__checkbox{
+  all: unset;
+  width: 1rem;
+  height: 1rem;
+  border: solid 1px black;
+  border-radius: .5rem;
+  
+  &:checked{
+    height: 1.5rem;
+    width: 1.5rem;
+    border: none;
+    background-image: url("./assets/shield.png");
+    background-size: contain;
   }
 }

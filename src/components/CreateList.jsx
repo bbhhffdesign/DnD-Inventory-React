@@ -120,6 +120,7 @@ export default function CreateList({
                         <td>
                           {category === "equipment" && (
                             <input
+                            className="equipItem__checkbox"
                               type="checkbox"
                               checked={item.checked || false}
                               onChange={(e) =>
@@ -140,7 +141,7 @@ export default function CreateList({
                         <td>{item.value}</td>
                         <td>
                           <button
-                            className=""
+                            className="removeButton"
                             onClick={() => updateQuantity(category, index, -1)}
                             disabled={lockedCategories[category] || false}
                           >
@@ -148,7 +149,7 @@ export default function CreateList({
                           </button>
                           {item.quantity}
                           <button
-                            className="n"
+                            className="addButton"
                             onClick={() => updateQuantity(category, index, 1)}
                             disabled={lockedCategories[category] || false}
                           >
@@ -178,7 +179,10 @@ export default function CreateList({
                       </tr>
                       {visibleDescriptions[key] && (
                         <tr >
-                          <td className="item__description" colSpan="7" style={{padding: "1rem"}}>{item.description}</td>
+                          <td className="item__description" colSpan="7" style={{padding: "1rem", textAlign: "left"
+
+
+                          }}>{item.description}</td>
                         </tr>
                       )}
                     </tbody>

@@ -36,14 +36,22 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
         name="weight"
         type="number"
         step="0.1"
+        min="0"
         placeholder="Peso"
         required
       />
-      <input name="quantity" type="number" placeholder="Cantidad" required />
+      <input
+        name="quantity"
+        min="0"
+        type="number"
+        placeholder="Cantidad"
+        required
+      />
       <input
         name="value"
         type="number"
         step="0.001"
+        min="0"
         placeholder="Valor"
         required
       />
@@ -55,7 +63,7 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
         <option value="misc">Misceláneo</option>
       </select>
       <div className="modaladdmoney-buttons">
-        <button className="pure-button" type="submit" style={{margin: "0"}}>
+        <button className="pure-button" type="submit" style={{ margin: "0" }}>
           <img src="./src/assets/tick.png" alt="" />
         </button>
         <button className="pure-button" type="button" onClick={onClose}>
