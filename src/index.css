@@ -176,6 +176,7 @@
 
 .inventory__header-wealth-container input {
   all: unset;
+  text-align: center;
   width: 100%;
 }
 
@@ -259,6 +260,23 @@
   border-collapse: separate;
   table-layout: fixed;
 }
+.item__table .currency {
+  font-size: 0.9rem;
+  text-shadow: 1.5px 1.5px 1px black;
+}
+.item__table .currency-kg {
+  color: rgb(59, 59, 59);
+  text-shadow: 1px 1px 1px #ffffff;
+}
+.item__table .currency-gold {
+  color: #feb623;
+}
+.item__table .currency-silver {
+  color: #b1c8d9;
+}
+.item__table .currency-copper {
+  color: #cc6a00;
+}
 .item__table tr {
   padding: 0rem;
 }
@@ -290,23 +308,6 @@
 .item__table td:nth-child(4) {
   width: 15%; /* Ancho para precio */
   text-align: right;
-}
-.item__table th:nth-child(4) .currency,
-.item__table td:nth-child(4) .currency {
-  font-size: 0.9rem;
-  text-shadow: 1px 1px 1px black;
-}
-.item__table th:nth-child(4) .currency-gold,
-.item__table td:nth-child(4) .currency-gold {
-  color: #feb623;
-}
-.item__table th:nth-child(4) .currency-silver,
-.item__table td:nth-child(4) .currency-silver {
-  color: #b1c8d9;
-}
-.item__table th:nth-child(4) .currency-copper,
-.item__table td:nth-child(4) .currency-copper {
-  color: #cc6a00;
 }
 
 .item__table th:nth-child(5),
@@ -501,8 +502,62 @@
   justify-content: center;
 }
 
+.addmoney-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 .addmoney-form h2 {
   text-align: center;
+}
+.addmoney-form .addmoney__input-container {
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.addmoney-form .addmoney__input-container .addmoney__input-img {
+  height: inherit;
+  width: 3rem;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.addmoney-form .addmoney__input-container .addmoney__input-img-1 {
+  background-image: url("/src/assets/coin-gold.png");
+}
+.addmoney-form .addmoney__input-container .addmoney__input-img-2 {
+  background-image: url("/src/assets/coin-silver.png");
+}
+.addmoney-form .addmoney__input-container .addmoney__input-img-3 {
+  background-image: url("/src/assets/coin-copper.png");
+}
+.addmoney-form .addmoney__input-container input[type=number] {
+  all: unset;
+  font-family: "Germania One", serif;
+  border-bottom: solid 1px white;
+  color: #747474;
+  font-size: 2.5rem;
+  width: 10rem;
+  text-align: center;
+}
+.addmoney-form .addmoney__input-container input[type=number]:focus {
+  color: white;
+  background-color: rgba(138, 138, 138, 0.226);
+  border-radius: 0.5rem;
+}
+.addmoney-form .addmoney__input-container input[type=checkbox] {
+  all: unset;
+  height: inherit;
+  width: 2rem;
+  background-image: url("/src/assets/plus.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.addmoney-form .addmoney__input-container input[type=checkbox]:checked {
+  background-image: url("/src/assets/less.png");
 }
 
 p,

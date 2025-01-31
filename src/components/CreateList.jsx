@@ -137,7 +137,7 @@ export default function CreateList({
                       >
                         {item.name}
                       </td>
-                      <td>{item.weight}</td>
+                      <td>{item.weight}<span className="currency currency-kg">kg</span></td>
                       <td>
                         {item.value.gold !== undefined ? (
                           <>

@@ -82,6 +82,24 @@
 
   table-layout: fixed;
 
+  .currency {
+    font-size: 0.9rem;
+    text-shadow:1.5px 1.5px 1px black;
+  }
+  .currency-kg{
+    color: rgb(59, 59, 59);
+    text-shadow: 1px 1px 1px #ffffff;
+  }
+  .currency-gold {
+    color: #feb623;
+  }
+  .currency-silver {
+    color: #b1c8d9;
+  }
+  .currency-copper {
+    color: #cc6a00;
+  }
+
   tr {
     padding: 0rem;
   }
@@ -115,19 +133,7 @@
   width: 15%; /* Ancho para precio */
   text-align: right;
 
-  .currency {
-    font-size: 0.9rem;
-    text-shadow:1px 1px 1px black;
-  }
-  .currency-gold {
-    color: #feb623;
-  }
-  .currency-silver {
-    color: #b1c8d9;
-  }
-  .currency-copper {
-    color: #cc6a00;
-  }
+  
 }
 .item__table th:nth-child(4) {
   // text-align: ;

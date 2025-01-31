@@ -104,8 +104,66 @@
 }
 
 .addmoney-form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
     h2{
         text-align: center;
+    }
+
+    .addmoney__input-container{
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        .addmoney__input-img{
+            height: inherit;
+            width: 3rem;
+            background-size: 60%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .addmoney__input-img-1{
+            background-image: url("/src/assets/coin-gold.png");
+        }
+        .addmoney__input-img-2{
+            background-image: url("/src/assets/coin-silver.png");
+            
+        }
+        .addmoney__input-img-3{
+            background-image: url("/src/assets/coin-copper.png");
+
+        }
+        input[type="number"]{
+            all: unset;
+            font-family: "Germania One", serif;
+            border-bottom: solid 1px white;
+            color: #747474;
+            font-size: 2.5rem;
+            width: 10rem;
+            text-align: center;
+
+            &:focus{
+                color: white;
+                background-color: rgba(138, 138, 138, 0.226);
+                border-radius: .5rem;
+            }
+        }
+        input[type="checkbox"]{
+            all: unset;
+            height: inherit;
+            width: 2rem;
+            background-image: url("/src/assets/plus.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            
+            &:checked{
+                background-image: url("/src/assets/less.png");
+            }
+        }
     }
 
 }
