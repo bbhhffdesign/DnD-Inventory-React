@@ -425,16 +425,21 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1rem;
+  gap: 2rem;
 }
 .modaladdmoney-buttons button {
   all: unset;
   height: 3rem;
   width: 3rem;
+  margin: 0 0 !important;
 }
 .modaladdmoney-buttons button img {
   height: inherit;
   width: inherit;
+}
+
+input[type=submit] {
+  margin: 0;
 }
 
 .menu {
@@ -535,10 +540,26 @@
 .addmoney-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 .addmoney-form h2 {
   text-align: center;
+}
+.addmoney-form .roundmoney-button {
+  background-image: url("/src/assets/redondear.png");
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+  width: 60%;
+  background-color: rgb(159, 69, 69);
+  color: transparent;
+  padding: 1rem;
+  box-shadow: 1px 1px 1px rgb(207, 207, 207);
+}
+.addmoney-form .roundmoney-button:active {
+  background-color: rgb(126, 195, 126);
+  box-shadow: -1px -1px 1px rgb(213, 213, 213);
 }
 .addmoney-form .addmoney__input-container {
   height: 4rem;

@@ -1,202 +1,218 @@
-.modal{
-    position: absolute;
-    z-index: 3;
-    background-color: #000000;
-    border: solid 2px white;
+.modal {
+  position: absolute;
+  z-index: 3;
+  background-color: #000000;
+  border: solid 2px white;
+  padding: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.modaladdmoney-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+//   padding: 1rem;
+
+  button {
+    all: unset;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 0 !important;
+
+    img {
+      height: inherit;
+      width: inherit;
+    }
+  }
+}
+input[type="submit"] {
+  margin: 0;
+}
+
+.menu {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  button {
+    all: unset;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem 0.5rem;
+    font-family: "Germania One", serif;
+    font-weight: 400;
+    font-style: normal;
+    border: solid 1px white;
+
+    &:active {
+      background-color: #747474;
+      color: black;
+      border: solid 1px white;
+    }
+  }
+}
+
+.additemform {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+  }
+  input {
+    all: unset;
+    color: #ffffff;
+  }
+  select {
+    background-color: rgba(255, 0, 0, 0);
+    color: #d2d2d2;
+
+    option {
+      background-color: rgb(0, 0, 0);
+      color: inherit;
+    }
+  }
+}
+
+.sellitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0;
+
+    img {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+
+  .quantity-controls {
     padding: 1rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+    display: flex;
+    justify-content: center;
+    width: 50%;
 
+    input[type="number"] {
+      all: unset;
+      font-family: "Germania One", serif;
+      border-bottom: solid 1px white;
+      color: #ffffff;
+      font-size: 2.5rem;
+      width: 10rem;
+      text-align: center;
+      margin: 0 1rem;
+      text-shadow: 1px 1px 2px rgb(230, 198, 19);
+
+      &:focus {
+        color: white;
+        background-color: rgba(138, 138, 138, 0.226);
+        border-radius: 0.5rem;
+      }
+    }
+
+    .removeButton,
+    .addButton {
+      border: none;
+      color: transparent;
+    }
+    .removeButton {
+      clip-path: polygon(0 50%, 100% 100%, 100% 0);
+    }
+    .addButton {
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
+    }
+  }
 }
 
-.modaladdmoney-buttons{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.addmoney-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  h2 {
+    text-align: center;
+  }
+  .roundmoney-button {
+    background-image: url("/src/assets/redondear.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+    width: 60%;
+    background-color: rgb(159, 69, 69);
+    color: transparent;
+    // height: 3rem;
     padding: 1rem;
-
-    button{
-        all: unset;
-        height: 3rem;
-        width: 3rem;
-        
-        img{
-            height: inherit;
-            width: inherit;
-
-        }
-    }
-}
-
-.menu{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-
-    button{
-        all: unset;
-        display: inline-block;
-        text-align: center;
-        font-size: 1.5rem;
-        padding: 1rem .5rem;
-        font-family: "Germania One", serif;
-        font-weight: 400;
-        font-style: normal;
-        border: solid 1px white;
-
-        &:active{
-            background-color: #747474;
-            color: black;
-            border: solid 1px white;
-        }
-    }
-}
-
-.additemform{
-    display: flex;
-    flex-direction: column;
-
-    h2{
-        text-align: center;
-    }
-    input{
-        all: unset;
-        color: #ffffff;
-    }
-    select{
-        background-color: rgba(255, 0, 0, 0);
-        color: #d2d2d2;
-
-        option{
-            background-color: rgb(0, 0, 0);
-            color: inherit;
-        }
-    }
-}
-
-.sellitem{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-
-    h2{
-        text-align: center;
-    }
+    box-shadow: 1px 1px 1px rgb(207, 207, 207);
     
-    p{
-        margin-bottom: 0;
-        
-        img{
-            height: 1.5rem;
-            width: 1.5rem ;
-
-        }
+    &:active {
+        background-color: rgb(126, 195, 126);
+        box-shadow: -1px -1px 1px rgb(213, 213, 213);
     }
+  }
 
-    .quantity-controls{
-        padding: 1rem;
-        display: flex;
-        justify-content: center;
-        width: 50%;
-
-        input[type="number"]{
-            all: unset;
-            font-family: "Germania One", serif;
-            border-bottom: solid 1px white;
-            color: #ffffff;
-            font-size: 2.5rem;
-            width: 10rem;
-            text-align: center;
-            margin: 0 1rem;
-            text-shadow: 1px 1px 2px rgb(230, 198, 19);
-
-            &:focus{
-                color: white;
-                background-color: rgba(138, 138, 138, 0.226);
-                border-radius: .5rem;
-            }
-        }
-
-        .removeButton,
-        .addButton {
-          border: none;
-          color: transparent;
-        }
-        .removeButton {
-          clip-path: polygon(0 50%, 100% 100%, 100% 0);
-        }
-        .addButton {
-          clip-path: polygon(0 0, 0 100%, 100% 50%);
-        }
-    }
-}
-
-.addmoney-form{
+  .addmoney__input-container {
+    height: 4rem;
     display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    h2{
-        text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .addmoney__input-img {
+      height: inherit;
+      width: 3rem;
+      background-size: 60%;
+      background-repeat: no-repeat;
+      background-position: center;
     }
-
-    .addmoney__input-container{
-        height: 4rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-
-        .addmoney__input-img{
-            height: inherit;
-            width: 3rem;
-            background-size: 60%;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        .addmoney__input-img-1{
-            background-image: url("/src/assets/coin-gold.png");
-        }
-        .addmoney__input-img-2{
-            background-image: url("/src/assets/coin-silver.png");
-            
-        }
-        .addmoney__input-img-3{
-            background-image: url("/src/assets/coin-copper.png");
-
-        }
-        input[type="number"]{
-            all: unset;
-            font-family: "Germania One", serif;
-            border-bottom: solid 1px white;
-            color: #747474;
-            font-size: 2.5rem;
-            width: 10rem;
-            text-align: center;
-
-            &:focus{
-                color: white;
-                background-color: rgba(138, 138, 138, 0.226);
-                border-radius: .5rem;
-            }
-        }
-        input[type="checkbox"]{
-            all: unset;
-            height: inherit;
-            width: 2rem;
-            background-image: url("/src/assets/plus.png");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            
-            &:checked{
-                background-image: url("/src/assets/less.png");
-            }
-        }
+    .addmoney__input-img-1 {
+      background-image: url("/src/assets/coin-gold.png");
     }
+    .addmoney__input-img-2 {
+      background-image: url("/src/assets/coin-silver.png");
+    }
+    .addmoney__input-img-3 {
+      background-image: url("/src/assets/coin-copper.png");
+    }
+    input[type="number"] {
+      all: unset;
+      font-family: "Germania One", serif;
+      border-bottom: solid 1px white;
+      color: #747474;
+      font-size: 2.5rem;
+      width: 10rem;
+      text-align: center;
 
+      &:focus {
+        color: white;
+        background-color: rgba(138, 138, 138, 0.226);
+        border-radius: 0.5rem;
+      }
+    }
+    input[type="checkbox"] {
+      all: unset;
+      height: inherit;
+      width: 2rem;
+      background-image: url("/src/assets/plus.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      &:checked {
+        background-image: url("/src/assets/less.png");
+      }
+    }
+  }
 }
-

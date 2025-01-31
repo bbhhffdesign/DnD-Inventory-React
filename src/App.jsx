@@ -51,6 +51,7 @@ function InventoryApp() {
   };
   const totalWeight = calculateTotalWeight(inventory);
   const [dropdownCheck, setDropdownChecked] = useState(false);
+
   const [subtractValues, setSubtractValues] = useState({
     gold: false,
     silver: false,
@@ -59,6 +60,39 @@ function InventoryApp() {
   const resetModalValues = () => {
     setModalValues({ gold: 0, silver: 0, copper: 0 });
     setSubtractValues({ gold: false, silver: false, copper: false });
+  };
+
+  const roundWalletValues = () => {
+    if (
+      window.confirm(
+        "¿Seguro que quieres redondear tu dinero? Esto convertirá cobre y plata en oro."
+      )
+    ) {
+      setAllInventories((prevInventories) => {
+        const wallet = { ...prevInventories[currentInventory].wallet };
+
+        wallet.silver += Math.floor(wallet.copper / 10);
+        wallet.copper = wallet.copper % 10;
+
+        wallet.gold += Math.floor(wallet.silver / 10);
+        wallet.silver = wallet.silver % 10;
+
+        const updatedInventories = {
+          ...prevInventories,
+          [currentInventory]: {
+            ...prevInventories[currentInventory],
+            wallet,
+          },
+        };
+
+        setModalValues({
+          gold: wallet.gold,
+          silver: wallet.silver,
+          copper: wallet.copper,
+        });
+        return updatedInventories;
+      });
+    }
   };
 
   useEffect(() => {
@@ -187,8 +221,10 @@ function InventoryApp() {
         }
       }}
     >
-          <button className="additem-button" onClick={() => setShowForm(!showForm)}>
-          </button>
+      <button
+        className="additem-button"
+        onClick={() => setShowForm(!showForm)}
+      ></button>
       <header className="inventory__header">
         <div className="inventory__header-inner">
           <div className="inventory__header-top">
@@ -278,7 +314,7 @@ function InventoryApp() {
           handleUpload={handleUpload}
         />
       )}
-      {showAddMoneyModal && (
+      {/* {showAddMoneyModal && (
         <div className="modal">
           <form
             className="pure-form pure-form-stacked addmoney-form"
@@ -379,8 +415,99 @@ function InventoryApp() {
             </div>
           </form>
         </div>
-      )}
+      )} */}
+{showAddMoneyModal && (
+  <div className="modal">
+    <form
+      className="pure-form pure-form-stacked addmoney-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleAddMoney(
+          allInventories,
+          currentInventory,
+          modalValues,
+          subtractValues,
+          setInventory,
+          setShowAddMoneyModal,
+          resetModalValues
+        );
+      }}
+    >
+      <h2>Agregar o Quitar Dinero</h2>
+      <button type="button" className="pure-button roundmoney-button" onClick={roundWalletValues}>
+        redondeo
+      </button>
+      <div className="addmoney__input-container">
+        <div className="addmoney__input-img addmoney__input-img-1"></div>
+        <input
+          type="number"
+          placeholder="Oro (gp)"
+          min="0"
+          value={modalValues.gold}
+          onChange={(e) => {
+            const value = Math.max(0, parseInt(e.target.value, 10) || 0);
+            setModalValues({ ...modalValues, gold: value });
+          }}
+        />
+        <input
+          type="checkbox"
+          checked={subtractValues.gold}
+          onChange={(e) => setSubtractValues({ ...subtractValues, gold: e.target.checked })}
+        />
+      </div>
+      <div className="addmoney__input-container">
+        <div className="addmoney__input-img addmoney__input-img-2"></div>
+        <input
+          type="number"
+          placeholder="Plata (sp)"
+          min="0"
+          value={modalValues.silver}
+          onChange={(e) => {
+            const value = Math.max(0, parseInt(e.target.value, 10) || 0);
+            setModalValues({ ...modalValues, silver: value });
+          }}
+        />
+        <input
+          type="checkbox"
+          checked={subtractValues.silver}
+          onChange={(e) => setSubtractValues({ ...subtractValues, silver: e.target.checked })}
+        />
+      </div>
+      <div className="addmoney__input-container">
+        <div className="addmoney__input-img addmoney__input-img-3"></div>
+        <input
+          type="number"
+          placeholder="Cobre (cp)"
+          min="0"
+          value={modalValues.copper}
+          onChange={(e) => {
+            const value = Math.max(0, parseInt(e.target.value, 10) || 0);
+            setModalValues({ ...modalValues, copper: value });
+          }}
+        />
+        <input
+          type="checkbox"
+          checked={subtractValues.copper}
+          onChange={(e) => setSubtractValues({ ...subtractValues, copper: e.target.checked })}
+        />
+      </div>
+      <div className="modaladdmoney-buttons">
+        <button className="" type="submit">
+          <img src="./src/assets/tick.png" alt="Confirmar" />
+        </button>
+        <button
+          className=""
+          type="button"
+          onClick={() => setShowAddMoneyModal(false)}
+        >
+          <img src="./src/assets/x.png" alt="Cancelar" />
+        </button>
+      </div>
+    </form>
+  </div>
+)}
 
+  
       {showForm && (
         <CreateItem
           setInventory={setInventory}
@@ -402,7 +529,6 @@ function InventoryApp() {
         setInventory={setInventory}
         onSellItem={handleSellItem}
       />
-  
     </main>
   );
 }
