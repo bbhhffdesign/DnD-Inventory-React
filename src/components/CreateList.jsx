@@ -111,6 +111,7 @@ export default function CreateList({
                   <th></th>
                 </tr>
               </thead>
+
               {items.map((item, index) => {
                 const key = `${category}-${index}`;
                 return (
@@ -125,7 +126,6 @@ export default function CreateList({
                             onChange={(e) =>
                               toggleEquipmentItem(index, e.target.checked)
                             }
-                            disabled={lockedCategories[category] || false}
                           />
                         )}
                       </td>
@@ -138,9 +138,29 @@ export default function CreateList({
                         {item.name}
                       </td>
                       <td>{item.weight}</td>
-                      <td>{item.value}</td>
                       <td>
-                        <button
+                        {item.value.gold !== undefined ? (
+                          <>
+                            {item.value.gold}
+                            <span className="currency currency-gold">gp</span>
+                          </>
+                        ) : item.value.silver !== undefined ? (
+                          <>
+                            {item.value.silver}
+                            <span className="currency currency-silver">pp</span>
+                          </>
+                        ) : item.value.copper !== undefined ? (
+                          <>
+                            {item.value.copper}
+                            <span className="currency currency-copper">cp</span>
+                          </>
+                        ) : (
+                          "0"
+                        )}
+                      </td>
+                      <td>
+                        <div className="quantity-container">
+                        <button 
                           className="removeButton"
                           onClick={() => updateQuantity(category, index, -1)}
                           disabled={lockedCategories[category] || false}
@@ -155,34 +175,15 @@ export default function CreateList({
                         >
                           +
                         </button>
+                        </div>
                       </td>
-                      {/* <td>
-                          <button
-                            className=""
-                            onClick={() =>
-                              onSellItem({ category, index, ...item })
-                            }
-                            disabled={lockedCategories[category] || false}
-                          >
-                            💲
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className=""
-                            onClick={() => deleteItem(category, index)}
-                            disabled={lockedCategories[category] || false}
-                          >
-                            🗑️
-                          </button>
-                        </td> */}
                     </tr>
                     {visibleDescriptions[key] && (
                       <tr>
                         <td
                           className="item__description"
                           colSpan="4"
-                          style={{ padding: "1rem", textAlign: "left" }}
+                        
                         >
                           {item.description}
                         </td>
@@ -196,7 +197,7 @@ export default function CreateList({
                           >
                             💲
                           </button>
-              
+
                           <button
                             className=""
                             onClick={() => deleteItem(category, index)}

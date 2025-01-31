@@ -264,14 +264,16 @@
 }
 .item__table th,
 .item__table td {
-  text-align: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0;
   text-overflow: ellipsis;
+}
+.item__table td {
+  padding: 0.3rem 0 0.3rem 0.5rem;
 }
 
 .item__table th:nth-child(1),
 .item__table td:nth-child(1) {
-  width: 8%;
+  width: 5%;
 }
 
 .item__table th:nth-child(2),
@@ -281,24 +283,49 @@
 
 .item__table th:nth-child(3),
 .item__table td:nth-child(3) {
-  width: 15%; /* Ancho para peso */
+  width: 10%; /* Ancho para peso */
 }
 
 .item__table th:nth-child(4),
 .item__table td:nth-child(4) {
-  width: 12%; /* Ancho para precio */
+  width: 15%; /* Ancho para precio */
+  text-align: right;
+}
+.item__table th:nth-child(4) .currency,
+.item__table td:nth-child(4) .currency {
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 1px black;
+}
+.item__table th:nth-child(4) .currency-gold,
+.item__table td:nth-child(4) .currency-gold {
+  color: #feb623;
+}
+.item__table th:nth-child(4) .currency-silver,
+.item__table td:nth-child(4) .currency-silver {
+  color: #b1c8d9;
+}
+.item__table th:nth-child(4) .currency-copper,
+.item__table td:nth-child(4) .currency-copper {
+  color: #cc6a00;
 }
 
 .item__table th:nth-child(5),
 .item__table td:nth-child(5) {
   width: 25%; /* Ancho para cantidad */
 }
+.item__table th:nth-child(5) .quantity-container,
+.item__table td:nth-child(5) .quantity-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .item__description {
   text-align: left;
   background-color: rgba(21, 21, 21, 0.4745098039);
   white-space: normal;
-  padding: 1rem;
+  padding-left: 1rem;
+  text-align: left;
   color: var(--color-grey);
   font-weight: 400;
   text-shadow: none;
@@ -337,12 +364,10 @@
   border: none;
 }
 .item__bodytable button.removeButton {
-  margin-right: 0.5rem;
   -webkit-clip-path: polygon(0 50%, 100% 100%, 100% 0);
           clip-path: polygon(0 50%, 100% 100%, 100% 0);
 }
 .item__bodytable button.addButton {
-  margin-left: 0.5rem;
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 50%);
           clip-path: polygon(0 0, 0 100%, 100% 50%);
 }
@@ -375,6 +400,8 @@
   border: none;
   background-color: white;
   background-size: contain;
+  border: solid 1px black;
+  background-image: url("/src/assets/equipped.png");
 }
 
 .addButton {

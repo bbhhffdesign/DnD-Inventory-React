@@ -5,16 +5,12 @@ export default function SellItemForm({
   onSell,
   onClose,
 }) {
-  const incrementQuantity = () => {
-    if (quantity < item.quantity) {
-      setQuantity(quantity + 1); // Incrementa la cantidad, pero no excede el máximo
-    }
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1); // Decrementa la cantidad, pero no baja de 1
-    }
+  // Formatear el valor correctamente para mostrarlo
+  const formatValue = () => {
+    if (item.value.gold !== undefined) return `${item.value.gold}gp`;
+    if (item.value.silver !== undefined) return `${item.value.silver}pp`;
+    if (item.value.copper !== undefined) return `${item.value.copper}cp`;
+    return "0";
   };
 
   const handleSell = (e) => {
@@ -33,25 +29,19 @@ export default function SellItemForm({
       style={{ border: "solid 1px white", padding: "1rem" }}
     >
       <h2 style={{ margin: "0" }}>Vender Item</h2>
+      <p>{item.name}</p>
+      <p>{item.description}</p>
       <p>
-         {item.name}
+        <strong>Valor: </strong> {formatValue()}
       </p>
       <p>
-         {item.description}
+        <strong>Cantidad: </strong> {item.quantity}
       </p>
-      <p>
-        <strong>Valor: </strong>
-         {item.value}
-      </p>
-      <p>
-        <strong>Cantidad: </strong>
-        {item.quantity}
-      </p>
+
       <div className="quantity-controls">
         <button
           type="button"
-          onClick={decrementQuantity}
-          disabled={item.quantity <= 0} // Deshabilita si la cantidad es 0 o menor
+          onClick={() => setQuantity(Math.max(1, quantity - 1))}
           style={{
             padding: "0.5rem",
             fontSize: "1.5rem",
@@ -68,7 +58,6 @@ export default function SellItemForm({
           min="1"
           max={item.quantity}
           readOnly
-          disabled={item.quantity <= 0} // Deshabilita el input si la cantidad es 0 o menor
           style={{
             textAlign: "center",
             width: "3rem",
@@ -78,8 +67,7 @@ export default function SellItemForm({
         />
         <button
           type="button"
-          onClick={incrementQuantity}
-          disabled={item.quantity <= 0} // Deshabilita si la cantidad es 0 o menor
+          onClick={() => setQuantity(Math.min(item.quantity, quantity + 1))}
           style={{
             padding: "0.5rem",
             fontSize: "1.5rem",
@@ -90,13 +78,9 @@ export default function SellItemForm({
           +
         </button>
       </div>
+
       <div className="modaladdmoney-buttons">
-        <button
-          className="pure-button"
-          type="submit"
-          style={{ margin: "0" }}
-          disabled={item.quantity <= 0} // Deshabilita el botón de vender si no hay cantidad suficiente
-        >
+        <button className="pure-button" type="submit" style={{ margin: "0" }}>
           <img src="./src/assets/tick.png" alt="" />
         </button>
         <button className="pure-button" type="button" onClick={onClose}>

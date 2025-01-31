@@ -86,30 +86,48 @@ function InventoryApp() {
   }
 
   function handleSell() {
+    if (!itemToSell) return;
+  
     const { category, index, value } = itemToSell;
     const item = allInventories[currentInventory][category][index];
-    const sellValue = value * sellQuantity;
-
-    let { gold, silver, copper } = allInventories[currentInventory].wallet || {
-      gold: 0,
-      silver: 0,
-      copper: 0,
-    };
-    copper += Math.round(sellValue * 1000);
-    silver += Math.floor(copper / 100);
-    copper %= 100;
-    gold += Math.floor(silver / 10);
-    silver %= 10;
-
+  
+    if (!item || item.quantity < sellQuantity) {
+      alert("No tienes suficientes ítems para vender.");
+      return;
+    }
+  
+    // Obtener el precio total a agregar a la wallet
+    let earnedGold = 0;
+    let earnedSilver = 0;
+    let earnedCopper = 0;
+  
+    if (value.gold !== undefined) earnedGold = value.gold * sellQuantity;
+    if (value.silver !== undefined) earnedSilver = value.silver * sellQuantity;
+    if (value.copper !== undefined) earnedCopper = value.copper * sellQuantity;
+  
+    // Obtener los valores actuales de la wallet y asegurarse de que no sean null
+    let { gold = 0, silver = 0, copper = 0 } = allInventories[currentInventory].wallet;
+  
+    // Sumar el dinero obtenido
+    gold += earnedGold;
+    silver += earnedSilver;
+    copper += earnedCopper;
+  
+    // Asegurar que `copper` nunca sea null
+    if (copper === null || isNaN(copper)) copper = 0;
+  
+    // Actualizar la wallet
     setInventory({
       [category]: allInventories[currentInventory][category].map((it, i) =>
         i === index ? { ...it, quantity: it.quantity - sellQuantity } : it
       ),
       wallet: { gold, silver, copper },
     });
-
+  
     setShowSellForm(false);
   }
+  
+  
   function handleDownload() {
     const dataStr = JSON.stringify(allInventories, null, 2);
     const blob = new Blob([dataStr], { type: "application/json" });
