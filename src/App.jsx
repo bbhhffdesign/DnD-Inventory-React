@@ -168,6 +168,12 @@ function InventoryApp() {
                 </option>
               ))}
             </select>
+            <button
+                className="pure-button addmoney"
+                onClick={() => setShowAddMoneyModal((prev) => !prev)} // Muestra el modal
+              >
+                💲
+              </button>
             <input
               type="checkbox"
               className="header__dropdown-btn"
@@ -182,7 +188,7 @@ function InventoryApp() {
                   color: totalWeight > inventory.maxWeight ? "red" : "black",
                 }}
               >
-                {totalWeight} /{" "}
+                {totalWeight}/
                 <input
                   type="number"
                   value={inventory.maxWeight || ""}
@@ -229,12 +235,12 @@ function InventoryApp() {
                   value={inventory.wallet?.copper || 0}
                 />
               </div>
-              <button
+              {/* <button
                 className="pure-button addmoney"
                 onClick={() => setShowAddMoneyModal((prev) => !prev)} // Muestra el modal
               >
                 💲
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

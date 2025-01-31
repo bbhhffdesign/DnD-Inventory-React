@@ -56,14 +56,16 @@ export function handleDeleteInventory(inventoryName, allInventories, setAllInven
   setCurrentInventory("default");
 }
 export function calculateTotalWeight(inventory) {
-  return Object.entries(inventory).reduce((totalWeight, [key, items]) => {
-    if (!Array.isArray(items)) {
-      console.warn(`Expected array but got ${typeof items} for key ${key}`);
-      return totalWeight;
-    }
-    return (
-      totalWeight +
-      items.reduce((sum, item) => sum + item.weight * item.quantity, 0)
-    );
-  }, 0);
+  return parseFloat(
+    Object.entries(inventory).reduce((totalWeight, [key, items]) => {
+      if (!Array.isArray(items)) {
+        console.warn(`Expected array but got ${typeof items} for key ${key}`);
+        return totalWeight;
+      }
+      return (
+        totalWeight +
+        items.reduce((sum, item) => sum + item.weight * item.quantity, 0)
+      );
+    }, 0).toFixed(1) // Limita a un decimal
+  );
 }

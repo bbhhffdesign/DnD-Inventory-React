@@ -67,7 +67,8 @@
 .item__dropdown {
   width: 95%;
   border-radius: 1rem;
-  background-image: url("./assets/paper-texture.jpg");
+  // background-image: url("./assets/paper-texture.jpg");
+  background-color: rgb(215, 189, 147);
   background-position: left;
   background-repeat: repeat;
   background-size: fixed;
@@ -82,6 +83,10 @@
 
   table-layout: fixed;
 
+  tr{
+    padding: 0rem;
+  }
+
   th,
   td {
     text-align: center;
@@ -92,12 +97,12 @@
 }
 .item__table th:nth-child(1),
 .item__table td:nth-child(1) {
-  width: 5%;
+  width: 8%;
 }
 
 .item__table th:nth-child(2),
 .item__table td:nth-child(2) {
-  width: 40%; /* Ancho de la columna de nombres */
+  width: 45%; /* Ancho de la columna de nombres */
 }
 
 .item__table th:nth-child(3),
@@ -107,20 +112,20 @@
 
 .item__table th:nth-child(4),
 .item__table td:nth-child(4) {
-  width: 10%; /* Ancho para precio */
+  width: 12%; /* Ancho para precio */
 }
 
 .item__table th:nth-child(5),
 .item__table td:nth-child(5) {
-  width: 15%; /* Ancho para cantidad */
+  width: 25%; /* Ancho para cantidad */
 }
 
-.item__table th:nth-child(6),
-.item__table td:nth-child(6),
-.item__table th:nth-child(7),
-.item__table td:nth-child(7) {
-  width: 7.5%; /* Ancho para los botones */
-}
+// .item__table th:nth-child(6),
+// .item__table td:nth-child(6),
+// .item__table th:nth-child(7),
+// .item__table td:nth-child(7) {
+//   width: 10%; /* Ancho para los botones */
+// }
 
 .item__description {
   text-align: left;
@@ -154,6 +159,8 @@
     border-radius: .5rem;
     padding: 0.5rem 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: inherit;
+    width: 1.5rem;
 
     &:disabled {
       filter: grayscale(100);
@@ -161,7 +168,7 @@
     &.removeButton,
     &.addButton{
       border: none;
-      color: transparent;
+      // color: transparent;
     }
     &.removeButton{
       margin-right: .5rem;
@@ -172,6 +179,17 @@
         margin-left: .5rem;
         clip-path: polygon(0 0, 0 100%, 100% 50%);
       }
+  }
+  .item__buttons{
+    background-color: #15151579;
+
+    button{
+      box-sizing: border-box;
+      width: 40%;
+      margin: 0 .2rem;
+      
+
+    }
   }
 }
 
@@ -190,13 +208,15 @@
   width: 1rem;
   height: 1rem;
   border: solid 1px black;
+  background-color: grey;
   border-radius: .5rem;
   
   &:checked{
-    height: 1.5rem;
-    width: 1.5rem;
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
     border: none;
-    background-image: url("./assets/shield.png");
+    background-color: white;
     background-size: contain;
   }
 }

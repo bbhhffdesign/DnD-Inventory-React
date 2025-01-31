@@ -39,7 +39,6 @@ export default function CreateList({
   }
 
   function deleteItem(category, index) {
-
     setInventory({
       [category]: updatedInventory[category].filter((_, i) => i !== index),
     });
@@ -82,7 +81,7 @@ export default function CreateList({
         >
           <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
           <input
-          className="lock__category"
+            className="lock__category"
             type="checkbox"
             name="lock-category"
             checked={lockedCategories[category] || false}
@@ -115,48 +114,49 @@ export default function CreateList({
               {items.map((item, index) => {
                 const key = `${category}-${index}`;
                 return (
-                    <tbody key={index} className="item__bodytable">
-                      <tr>
-                        <td>
-                          {category === "equipment" && (
-                            <input
+                  <tbody key={index} className="item__bodytable">
+                    <tr>
+                      <td>
+                        {category === "equipment" && (
+                          <input
                             className="equipItem__checkbox"
-                              type="checkbox"
-                              checked={item.checked || false}
-                              onChange={(e) =>
-                                toggleEquipmentItem(index, e.target.checked)
-                              }
-                              disabled={lockedCategories[category] || false}
-                            />
-                          )}
-                        </td>
-                        <td style={{minWidth : "100%"}}
-                          onClick={() =>
-                            toggleDescriptionVisibility(category, index)
-                          }
+                            type="checkbox"
+                            checked={item.checked || false}
+                            onChange={(e) =>
+                              toggleEquipmentItem(index, e.target.checked)
+                            }
+                            disabled={lockedCategories[category] || false}
+                          />
+                        )}
+                      </td>
+                      <td
+                        style={{ minWidth: "100%" }}
+                        onClick={() =>
+                          toggleDescriptionVisibility(category, index)
+                        }
+                      >
+                        {item.name}
+                      </td>
+                      <td>{item.weight}</td>
+                      <td>{item.value}</td>
+                      <td>
+                        <button
+                          className="removeButton"
+                          onClick={() => updateQuantity(category, index, -1)}
+                          disabled={lockedCategories[category] || false}
                         >
-                          {item.name}
-                        </td>
-                        <td>{item.weight}</td>
-                        <td>{item.value}</td>
-                        <td>
-                          <button
-                            className="removeButton"
-                            onClick={() => updateQuantity(category, index, -1)}
-                            disabled={lockedCategories[category] || false}
-                          >
-                            −
-                          </button>
-                          {item.quantity}
-                          <button
-                            className="addButton"
-                            onClick={() => updateQuantity(category, index, 1)}
-                            disabled={lockedCategories[category] || false}
-                          >
-                            +
-                          </button>
-                        </td>
-                        <td>
+                          −
+                        </button>
+                        {item.quantity}
+                        <button
+                          className="addButton"
+                          onClick={() => updateQuantity(category, index, 1)}
+                          disabled={lockedCategories[category] || false}
+                        >
+                          +
+                        </button>
+                      </td>
+                      {/* <td>
                           <button
                             className=""
                             onClick={() =>
@@ -173,24 +173,46 @@ export default function CreateList({
                             onClick={() => deleteItem(category, index)}
                             disabled={lockedCategories[category] || false}
                           >
-                            ❌
+                            🗑️
+                          </button>
+                        </td> */}
+                    </tr>
+                    {visibleDescriptions[key] && (
+                      <tr>
+                        <td
+                          className="item__description"
+                          colSpan="4"
+                          style={{ padding: "1rem", textAlign: "left" }}
+                        >
+                          {item.description}
+                        </td>
+                        <td className="item__buttons">
+                          <button
+                            className=""
+                            onClick={() =>
+                              onSellItem({ category, index, ...item })
+                            }
+                            disabled={lockedCategories[category] || false}
+                          >
+                            💲
+                          </button>
+              
+                          <button
+                            className=""
+                            onClick={() => deleteItem(category, index)}
+                            disabled={lockedCategories[category] || false}
+                          >
+                            🗑️
                           </button>
                         </td>
                       </tr>
-                      {visibleDescriptions[key] && (
-                        <tr >
-                          <td className="item__description" colSpan="7" style={{padding: "1rem", textAlign: "left"
-
-
-                          }}>{item.description}</td>
-                        </tr>
-                      )}
-                    </tbody>
+                    )}
+                  </tbody>
                 );
               })}
             </table>
           ) : (
-            <p style={{textAlign: "center"}}>No hay items</p>
+            <p style={{ textAlign: "center" }}>No hay items</p>
           )}
         </div>
       </div>
