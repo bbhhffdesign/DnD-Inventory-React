@@ -64,8 +64,9 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
       <input name="quantity" min="1" type="number" placeholder="Cantidad" required />
 
       {/* Inputs separados para Gold, Silver y Copper */}
-      <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-        <input
+      
+        <input 
+        style={{backgroundColor: "#feb5238b"}}
           name="gold"
           type="number"
           step="0.01"
@@ -74,7 +75,8 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
           value={gold}
           onChange={(e) => handleInputChange("gold", e.target.value)}
         />
-        <input
+        <input 
+        style={{backgroundColor: "#b1c8d980"}}
           name="silver"
           type="number"
           step="0.01"
@@ -83,7 +85,8 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
           value={silver}
           onChange={(e) => handleInputChange("silver", e.target.value)}
         />
-        <input
+        <input 
+        style={{backgroundColor: "#cc690065"}}
           name="copper"
           type="number"
           step="1"
@@ -92,7 +95,7 @@ export default function CreateItem({ setInventory, inventory, onClose }) {
           value={copper}
           onChange={(e) => handleInputChange("copper", e.target.value)}
         />
-      </div>
+
 
       <select name="category">
         <option value="equipment">Equipamiento</option>

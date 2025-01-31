@@ -64,7 +64,7 @@
     }
     input{
         all: unset;
-        color: #d2d2d2;
+        color: #ffffff;
     }
     select{
         background-color: rgba(255, 0, 0, 0);
@@ -80,6 +80,7 @@
 .sellitem{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 80%;
 
     h2{
@@ -100,6 +101,37 @@
         padding: 1rem;
         display: flex;
         justify-content: center;
+        width: 50%;
+
+        input[type="number"]{
+            all: unset;
+            font-family: "Germania One", serif;
+            border-bottom: solid 1px white;
+            color: #ffffff;
+            font-size: 2.5rem;
+            width: 10rem;
+            text-align: center;
+            margin: 0 1rem;
+            text-shadow: 1px 1px 2px rgb(230, 198, 19);
+
+            &:focus{
+                color: white;
+                background-color: rgba(138, 138, 138, 0.226);
+                border-radius: .5rem;
+            }
+        }
+
+        .removeButton,
+        .addButton {
+          border: none;
+          color: transparent;
+        }
+        .removeButton {
+          clip-path: polygon(0 50%, 100% 100%, 100% 0);
+        }
+        .addButton {
+          clip-path: polygon(0 0, 0 100%, 100% 50%);
+        }
     }
 }
 

@@ -187,6 +187,8 @@ function InventoryApp() {
         }
       }}
     >
+          <button className="additem-button" onClick={() => setShowForm(!showForm)}>
+          </button>
       <header className="inventory__header">
         <div className="inventory__header-inner">
           <div className="inventory__header-top">
@@ -276,65 +278,6 @@ function InventoryApp() {
           handleUpload={handleUpload}
         />
       )}
-      {/* {showAddMoneyModal && (
-        <div className="modal">
-          <form
-            className="pure-form pure-form-stacked addmoney-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleAddMoney(
-                allInventories,
-                currentInventory,
-                modalValues,
-                setInventory,
-                setShowAddMoneyModal
-              );
-            }}
-          >
-            <h2>Agregar o Quitar Dinero</h2>
-            <input
-              type="number"
-              placeholder="Oro (gp)"
-              value={modalValues.gold}
-              onChange={(e) => {
-                const value = parseInt(e.target.value, 10) || 0;
-                setModalValues({ ...modalValues, gold: value });
-              }}
-            />
-            <input
-              type="number"
-              placeholder="Plata (sp)"
-              value={modalValues.silver}
-              onChange={(e) => {
-                const value = parseInt(e.target.value, 10) || 0;
-                setModalValues({ ...modalValues, silver: value });
-              }}
-            />
-            <input
-              type="number"
-              placeholder="Cobre (cp)"
-              value={modalValues.copper}
-              onChange={(e) => {
-                const value = parseInt(e.target.value, 10) || 0;
-                setModalValues({ ...modalValues, copper: value });
-              }}
-            />
-            <div className="modaladdmoney-buttons">
-              <button className="pure-button" type="submit">
-                <img src="./src/assets/tick.png" alt="Confirmar" />
-              </button>
-              <button
-                className="pure-button"
-                type="button"
-                onClick={() => setShowAddMoneyModal(false)}
-              >
-                <img src="./src/assets/x.png" alt="Cancelar" />
-              </button>
-            </div>
-          </form>
-        </div>
-      )} */}
-
       {showAddMoneyModal && (
         <div className="modal">
           <form
@@ -459,9 +402,7 @@ function InventoryApp() {
         setInventory={setInventory}
         onSellItem={handleSellItem}
       />
-      <button className="additem-button" onClick={() => setShowForm(!showForm)}>
-        {/* {showForm ? "Cerrar formulario" : "Agregar Item"} */}
-      </button>
+  
     </main>
   );
 }

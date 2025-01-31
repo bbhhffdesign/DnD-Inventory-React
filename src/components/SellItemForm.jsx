@@ -40,14 +40,9 @@ export default function SellItemForm({
 
       <div className="quantity-controls">
         <button
+        className="removeButton"
           type="button"
           onClick={() => setQuantity(Math.max(1, quantity - 1))}
-          style={{
-            padding: "0.5rem",
-            fontSize: "1.5rem",
-            width: "2rem",
-            height: "2rem",
-          }}
         >
           -
         </button>
@@ -58,22 +53,13 @@ export default function SellItemForm({
           min="1"
           max={item.quantity}
           readOnly
-          style={{
-            textAlign: "center",
-            width: "3rem",
-            margin: "0 0.5rem",
-            fontSize: "1rem",
-          }}
+
         />
         <button
+        className="addButton"
           type="button"
           onClick={() => setQuantity(Math.min(item.quantity, quantity + 1))}
-          style={{
-            padding: "0.5rem",
-            fontSize: "1.5rem",
-            width: "2rem",
-            height: "2rem",
-          }}
+     
         >
           +
         </button>

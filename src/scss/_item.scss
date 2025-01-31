@@ -101,17 +101,19 @@
   }
 
   tr {
-    padding: 0rem;
+    padding: 0rem 1.5rem;
+
   }
 
   th,
   td {
-    padding: 0.5rem 0 0;
     text-overflow: ellipsis;
-    // white-space: nowrap;
+  }
+  th{
+    padding: .5rem 0;
   }
   td{
-    padding: .3rem 0 .3rem .5rem;
+    padding: .2rem .3rem;
   }
 }
 .item__table th:nth-child(1),
@@ -121,7 +123,7 @@
 
 .item__table th:nth-child(2),
 .item__table td:nth-child(2) {
-  width: 45%; /* Ancho de la columna de nombres */
+  width: 42%; /* Ancho de la columna de nombres */
 }
 
 .item__table th:nth-child(3),
@@ -130,7 +132,7 @@
 }
 .item__table th:nth-child(4),
 .item__table td:nth-child(4) {
-  width: 15%; /* Ancho para precio */
+  width: 18%; /* Ancho para precio */
   text-align: right;
 
   
@@ -180,26 +182,27 @@
   button {
     padding: 0;
     background-color: var(--color-grey);
-    border-radius: 0.5rem;
+    // border-radius: 0.5rem;
     padding: 0.5rem 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    // box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
     height: inherit;
     width: 1.5rem;
 
     &:disabled {
       filter: grayscale(100);
     }
+    &:active{
+      background-color: rgb(127, 127, 127);
+    }
     &.removeButton,
     &.addButton {
       border: none;
-      // color: transparent;
+      color: transparent;
     }
     &.removeButton {
-      // margin-right: 0.5rem;
       clip-path: polygon(0 50%, 100% 100%, 100% 0);
     }
     &.addButton {
-      // margin-left: 0.5rem;
       clip-path: polygon(0 0, 0 100%, 100% 50%);
     }
   }
